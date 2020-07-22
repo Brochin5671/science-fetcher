@@ -1,0 +1,50 @@
+body{
+	background-color: #FF26F4;
+	font-family: Verdana, Arial, Geneva, Arial Black;
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+header{
+	background-color: #D600CA;
+	text-align: center;
+	padding: 5px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#fetch{
+	text-align: center;
+}
+
+button{
+	background-color: #D600C0;
+	border: black 2px solid;
+	border-radius: 20px;
+	font-size: medium;
+	margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 15px;
+}
+
+button:hover{
+	color: #444444;
+	background-color: #D600FF;
+	cursor: pointer;
+}
+
+table{
+	background-color: #D600CA;
+	border: black 2px solid;
+	border-radius: 5px;
+	padding: 10px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+footer{
+	text-align: right;
+}
