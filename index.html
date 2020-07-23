@@ -6,6 +6,7 @@
 		<meta http-equiv="author" content="Maxim Brochin"/>
 		<meta http-equiv="content-language" content="en-CA"/>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
+		<script src="fetch.js"></script>
 	</head>
 	<body>
 		<header>
@@ -13,22 +14,9 @@
 			<p>Fetch the latest science news around the world!</p>
 		</header>
 		<div id="fetch">
-			<button><strong>Fetch some science!</strong></button>
+			<button onclick="fetchArticles()"><strong>Fetch some science!</strong></button>
 		</div>
-		<table>
-			<tr>
-				<th>Articles</th>
-				<th>Links</th>
-			</tr>
-			<tr>
-				<td>Article 1</td>
-				<td>Link 1</td>
-			</tr>
-			<tr>
-				<td>Article 2</td>
-				<td>Link 2</td>
-			</tr>
-		</table>
+		<div id="table"></div>
 		<footer><p>By Maxim Brochin</p></footer>
 	</body>
 </html>

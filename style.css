@@ -1,17 +1,15 @@
 body{
-	background-color: #FF26F4;
+	background: linear-gradient(135deg, #FF26F4, #D600CA);
 	font-family: Verdana, Arial, Geneva, Arial Black;
-	width: 900px;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 header{
 	background-color: #D600CA;
+	border-radius: 10px;
+	box-shadow: 0px 0px 20px black;
 	text-align: center;
 	padding: 5px;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 20px 10px 10px 10px;
 }
 
 #fetch{
@@ -22,16 +20,14 @@ button{
 	background-color: #D600C0;
 	border: black 2px solid;
 	border-radius: 20px;
+	box-shadow: 0px 0px 15px black;
 	font-size: medium;
 	margin-top: 30px;
-	margin-left: auto;
-	margin-right: auto;
 	padding: 15px;
 }
 
 button:hover{
-	color: #444444;
-	background-color: #D600FF;
+	opacity: 0.6;
 	cursor: pointer;
 }
 
