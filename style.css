@@ -1,6 +1,7 @@
 body{
 	background: linear-gradient(135deg, #FF26F4, #D600CA);
 	font-family: Verdana, Arial, Geneva, Arial Black;
+	margin: 0px;
 }
 
 header{
@@ -17,7 +18,7 @@ header{
 }
 
 button{
-	background-color: #D600C0;
+	background-color: #D600CA;
 	border: black 2px solid;
 	border-radius: 20px;
 	box-shadow: 0px 0px 15px black;
@@ -31,16 +32,55 @@ button:hover{
 	cursor: pointer;
 }
 
-table{
+#table{
 	background-color: #D600CA;
-	border: black 2px solid;
-	border-radius: 5px;
+	width: 100%;
+	border-collapse: collapse;
+	box-shadow: 0px 0px 15px black;
 	padding: 10px;
-	margin-top: 20px;
-	margin-left: auto;
-	margin-right: auto;
+	margin-top: 30px;
 }
 
-footer{
-	text-align: right;
+#table tr:hover{
+	background-color: #FF26F4;
+}
+
+#table th{
+	height: 50px;
+}
+
+#table th,td{
+	border-bottom: #FF26F4 2px solid;
+	text-align: center;
+}
+
+#table td a{
+	color: black;
+	text-decoration: none;
+}
+
+#nav ul{
+	background-color: #D600CA;
+	text-align: center;
+	padding: 5px;
+	margin-top: 50px;
+}
+
+#nav ul li{
+	display: inline;
+}
+
+#nav ul li a{
+	color: black;
+	text-decoration: none;
+	padding: 5px 30px 5px 30px;
+}
+
+#nav ul li a:hover{
+	background-color: #FF26F4;
+	color: black;
+}
+
+#about{
+	margin: 20px 50px 0px 50px;
 }

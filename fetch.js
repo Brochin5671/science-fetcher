@@ -1,29 +1,24 @@
 // Fetches article names and links
 function fetchArticles(){
-	// Create and add table
-	var table = document.getElementById("table");
-	var tableBody = document.createElement("table");
-	table.appendChild(tableBody);
 	
-	// Create and add column headers
-	var headers = document.createElement("tr");
-	var aHeader = document.createElement("th");
-	var lHeader = document.createElement("th");
-	aHeader.appendChild(document.createTextNode("Articles"));
-	lHeader.appendChild(document.createTextNode("Links"));
-	tableBody.appendChild(headers);
-	headers.appendChild(aHeader);
-	headers.appendChild(lHeader);
+	// Prevent adding more rows
+	if(document.getElementsByTagName("tr").length > 1){
+		alert("Fetched already");
+		return;
+	}
+	
+	// Get table
+	var table = document.getElementById("table");
 	
 	// Create and add row with article and link n times
 	for(i=0;i<10;i++){
 		var row = document.createElement("tr");
 		var article = document.createElement("td");
-		var link = document.createElement("td");
-		article.appendChild(document.createTextNode("Article "+(i+1)));
-		link.appendChild(document.createTextNode("Link "+(i+1)));
-		tableBody.appendChild(row);
+		var link = document.createElement("a");
+		link.href = "about.html";
+		link.appendChild(document.createTextNode("Article "+(i+1)));
+		table.appendChild(row);
 		row.append(article);
-		row.append(link);
+		article.append(link);
 	}
 }
