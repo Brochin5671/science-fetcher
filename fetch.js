@@ -1,24 +1,31 @@
-// Fetches article names and links
-function fetchArticles(){
-	
-	// Prevent adding more rows
-	if(document.getElementsByTagName("tr").length > 1){
-		alert("Fetched already");
-		return;
+// Require puppeteer
+const puppeteer = require('puppeteer');
+
+// Returns object array containing article title and link
+async function fetchArticles(url) {
+	// Launch browser and go to URL
+	const browser = await puppeteer.launch();
+	const page = await browser.newPage();
+	await page.goto(url, { waitUntil: 'networkidle2' });
+
+	// Gets and returns article title and link as object
+	async function articleSelect(i){
+		let data = await page.evaluate((i) =>{
+			let article = document.querySelector("#folder" + (i + 3) + " > div.opened > div:nth-child(1) > span:nth-child(2)").innerText;
+			let link = document.querySelector("#folder" + (i + 3) + " > div.opened > div:nth-child(2) > span:nth-child(2)").innerText;
+			return { article, link };
+		},i);
+		return data;
 	}
-	
-	// Get table
-	var table = document.getElementById("table");
-	
-	// Create and add row with article and link n times
-	for(i=0;i<10;i++){
-		var row = document.createElement("tr");
-		var article = document.createElement("td");
-		var link = document.createElement("a");
-		link.href = "about.html";
-		link.appendChild(document.createTextNode("Article "+(i+1)));
-		table.appendChild(row);
-		row.append(article);
-		article.append(link);
-	}
+
+	// Store objects in array and return it
+	let articleData = [];
+	for (let i = 0; i < 10; i++) {
+		articleData.push(await articleSelect(i));
+		console.log(articles[i]);
+    }
+	await browser.close();
+	return articleData;
 }
+
+fetchArticles('https://news.google.com/rss/search?hl=en-CA&gl=CA&ceid=CA:en&q=science+news&tbm=nws');

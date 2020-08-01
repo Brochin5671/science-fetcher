@@ -1,5 +1,5 @@
 body{
-	background: linear-gradient(135deg, #FF26F4, #D600CA);
+	background: linear-gradient(45deg, #FF26F4, #D600CA);
 	font-family: Verdana, Arial, Geneva, Arial Black;
 	margin: 0px;
 }
@@ -83,4 +83,9 @@ button:hover{
 
 #about{
 	margin: 20px 50px 0px 50px;
+}
+
+#contact{
+	text-align: center;
+	margin-top: 20px;
 }
