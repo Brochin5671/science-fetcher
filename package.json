@@ -2,26 +2,29 @@
   "name": "science-fetcher",
   "version": "1.0.0",
   "description": "Science Fetcher is able to fetch the latest science news to display with link provided.",
-  "main": "display.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node display.js"
+    "start": "node app.js"
   },
   "engines": {
-	"node": "12.16.0"
+    "node": "12.16.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Brochin5671/science-fetcher.git"
   },
   "keywords": [
-	"node",
-	"heroku",
-	"science"
+    "node",
+    "heroku",
+    "science"
   ],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Brochin5671/science-fetcher/issues"
   },
-  "homepage": "https://github.com/Brochin5671/science-fetcher#readme"
+  "homepage": "https://github.com/Brochin5671/science-fetcher#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
