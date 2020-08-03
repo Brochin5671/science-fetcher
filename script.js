@@ -39842,7 +39842,7 @@ function displayArticles(){
 			let row = document.createElement("tr");
 			let article = document.createElement("td");
 			let link = document.createElement("a");
-			link.href = data[i].url;
+			link.href = "https://news.google.com/"+data[i].url;
 			link.appendChild(document.createTextNode(data[i].title));
 			table.appendChild(row);
 			row.append(article);
