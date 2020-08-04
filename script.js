@@ -39815,7 +39815,7 @@ function fetchArticles(callback){
 			// Search every item for title and link and store it in list
 			$('.xrnccd').each(function () {
 				let title = $(this).find('.DY5T1d').text();
-				let url = $(this).find('.DY5T1d').attr('href');
+				let url = "https://news.google.com/"+$(this).find('.DY5T1d').attr('href');
 				data.push({title,url});
 			});
 			callback(null,data);
@@ -39842,7 +39842,7 @@ function displayArticles(){
 			let row = document.createElement("tr");
 			let article = document.createElement("td");
 			let link = document.createElement("a");
-			link.href = "https://news.google.com/"+data[i].url;
+			link.href = data[i].url;
 			link.appendChild(document.createTextNode(data[i].title));
 			table.appendChild(row);
 			row.append(article);
