@@ -39809,13 +39809,13 @@ const cheerio = require('cheerio');
 function fetchArticles(callback){
 	// Open url and load html
 	var data = [];
-	request('https://cors-anywhere.herokuapp.com/https://news.google.com/search?hl=en-CA&gl=CA&ceid=CA:en&q=science+news&tbm=nws',(error,response,body) => {
+	request('https://cors-anywhere.herokuapp.com/https://news.google.com/rss/search?hl=en-CA&gl=CA&ceid=CA:en&q=science+news&tbm=nws',(error,response,body) => {
 		if(!error && response.statusCode == 200){
 			const $ = cheerio.load(body);
 			// Search every item for title and link and store it in list
-			$('.xrnccd').each(function () {
-				let title = $(this).find('.DY5T1d').text();
-				let url = "https://news.google.com/"+$(this).find('.DY5T1d').attr('href');
+			$('item').each(function () {
+				let title = $(this).find('title').text();
+				let url = "https://news.google.com/articles/" + $(this).find('guid').text();
 				data.push({title,url});
 			});
 			callback(null,data);
