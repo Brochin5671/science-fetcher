@@ -39827,14 +39827,24 @@ function fetchArticles(callback){
 
 // Displays article names and links
 function displayArticles(){
-	// Prevent adding more rows
-	if(document.getElementsByTagName("tr").length > 1){
-		alert("Fetched already");
+	
+	// Update list if already fetched
+	let articleList = document.querySelectorAll("td > a");
+	if(articleList.length > 0){
+		// Execute fetchArticles and callback data
+		fetchArticles(function(error,data){
+			// Update links and titles
+			for(let i=0;i<articleList.length;i++){
+				articleList[i].href = data[i].url;
+				articleList[i].innerHTML = data[i].title;
+			}
+		});
 		return;
 	}
 	
-	// Get table and object array
+	// Get table and display it
 	let table = document.getElementById("table");
+	table.style.display = "table";
 	// Execute fetchArticles and callback data
 	fetchArticles(function(error,data){
 		// Create and add row with article and link n times
@@ -39842,11 +39852,12 @@ function displayArticles(){
 			let row = document.createElement("tr");
 			let article = document.createElement("td");
 			let link = document.createElement("a");
+			row.className = "article";
 			link.href = data[i].url;
 			link.appendChild(document.createTextNode(data[i].title));
-			table.appendChild(row);
-			row.append(article);
 			article.append(link);
+			row.append(article);
+			table.appendChild(row);
 		}
 	});
 }

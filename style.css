@@ -1,69 +1,75 @@
 body{
-	background: linear-gradient(45deg, #FF26F4, #D600CA);
+	background-color: #D000F9;
 	font-family: Verdana, Arial, Geneva, Arial Black;
 	margin: 0px;
 }
 
 header{
-	background-color: #D600CA;
+	background-color: #8E00A8;
 	border-radius: 10px;
 	box-shadow: 0px 0px 20px black;
 	text-align: center;
 	padding: 5px;
-	margin: 20px 10px 10px 10px;
+	margin: 20px 10px 20px 10px;
 }
 
-#fetch{
+#button{
 	text-align: center;
+	margin: 40px;
 }
 
-button{
-	background-color: #D600CA;
+#button button{
+	background-color: #8E00A8;
 	border: black 2px solid;
 	border-radius: 20px;
 	box-shadow: 0px 0px 15px black;
 	font-size: medium;
-	margin-top: 30px;
 	padding: 15px;
 }
 
-button:hover{
+#button button:hover{
 	opacity: 0.6;
 	cursor: pointer;
 }
 
 #table{
-	background-color: #D600CA;
+	display: none;
+	background-color: #A437B7;
 	width: 100%;
 	border-collapse: collapse;
 	box-shadow: 0px 0px 15px black;
-	padding: 10px;
-	margin-top: 30px;
-}
-
-#table tr:hover{
-	background-color: #FF26F4;
+	margin: 30px 0px 30px 0px;
 }
 
 #table th{
+	font-size: 20px;
 	height: 50px;
 }
 
+.article:hover{
+	background-color: #DB49F5;
+}
+
 #table th,td{
-	border-bottom: #FF26F4 2px solid;
+	border-bottom: #8E00A8 2px solid;
 	text-align: center;
+	padding: 6px;
 }
 
 #table td a{
 	color: black;
+	font-size: 15px;
 	text-decoration: none;
+	margin: 0px 10px 0px 10px;
+}
+
+#nav{
+	background-color: #640075;
 }
 
 #nav ul{
-	background-color: #D600CA;
 	text-align: center;
 	padding: 5px;
-	margin-top: 50px;
 }
 
 #nav ul li{
@@ -71,21 +77,38 @@ button:hover{
 }
 
 #nav ul li a{
-	color: black;
+	color: white;
 	text-decoration: none;
 	padding: 5px 30px 5px 30px;
 }
 
 #nav ul li a:hover{
-	background-color: #FF26F4;
+	background-color: #DB49F5;
 	color: black;
 }
 
 #about{
-	margin: 20px 50px 0px 50px;
+	background-color: #8E00A8;
+	width: 100%;
+	box-shadow: 0px 0px 15px black;
+	margin: 50px 0px 50px 0px;
+}
+
+#about p{
+	text-indent: 35px;
+	padding: 10px;
+	margin: 0px 20px 0px 20px;
 }
 
 #contact{
+	background-color: #8E00A8;
 	text-align: center;
-	margin-top: 20px;
+	width: 100%;
+	box-shadow: 0px 0px 15px black;
+	margin: 50px 0px 50px 0px;
+}
+
+#contact p{
+	padding: 10px;
+	margin: 0px 20px 0px 20px;
 }
