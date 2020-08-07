@@ -2,6 +2,7 @@ body{
 	background-color: #D000F9;
 	font-family: Verdana, Arial, Geneva, Arial Black;
 	margin: 0px;
+	padding-bottom: 40px;
 }
 
 header{
@@ -13,18 +14,27 @@ header{
 	margin: 20px 10px 20px 10px;
 }
 
+header h1{
+	font-size: 40px;
+}
+
+header p{
+	margin: 16px 15px 16px 15px;
+}
+
 #button{
 	text-align: center;
 	margin: 40px;
 }
 
 #button button{
-	background-color: #8E00A8;
+	background-color: #A437B7;
 	border: black 2px solid;
 	border-radius: 20px;
 	box-shadow: 0px 0px 15px black;
 	font-size: medium;
 	padding: 15px;
+	transition: opacity 0.3s;
 }
 
 #button button:hover{
@@ -46,6 +56,10 @@ header{
 	height: 50px;
 }
 
+.article{
+	transition: background-color 0.3s;
+}
+
 .article:hover{
 	background-color: #DB49F5;
 }
@@ -63,35 +77,47 @@ header{
 	margin: 0px 10px 0px 10px;
 }
 
-#nav{
+footer{
 	background-color: #640075;
+	bottom: 0;
+	width: 100%;
+	position: fixed;
+	z-index: 1;
 }
 
-#nav ul{
+footer ul{
 	text-align: center;
 	padding: 5px;
+	margin: 0px;
 }
 
-#nav ul li{
+footer ul li{
 	display: inline;
 }
 
-#nav ul li a{
+footer ul li a{
 	color: white;
 	text-decoration: none;
 	padding: 5px 30px 5px 30px;
+	transition: background-color 0.2s;
 }
 
-#nav ul li a:hover{
+footer ul li a:hover{
 	background-color: #DB49F5;
 	color: black;
 }
 
 #about{
-	background-color: #8E00A8;
+	background-color: #A437B7;
 	width: 100%;
 	box-shadow: 0px 0px 15px black;
 	margin: 50px 0px 50px 0px;
+}
+
+#about h2{
+	font-size: 26px;
+	padding-top: 10px;
+	margin: 0px 30px 0px 30px;
 }
 
 #about p{
@@ -100,15 +126,37 @@ header{
 	margin: 0px 20px 0px 20px;
 }
 
+#about h5{
+	text-align: right;
+	padding: 0px 10px 10px 10px;
+	margin: 0px 20px 0px 20px;
+}
+
 #contact{
-	background-color: #8E00A8;
+	background-color: #A437B7;
 	text-align: center;
 	width: 100%;
 	box-shadow: 0px 0px 15px black;
 	margin: 50px 0px 50px 0px;
 }
 
+#contact h2{
+	font-size: 26px;
+	padding-top: 10px;
+	margin: 0px 30px 0px 30px;
+}
+
 #contact p{
 	padding: 10px;
 	margin: 0px 20px 0px 20px;
+}
+
+#contact a{
+	text-decoration: none;
+	color: white;
+	transition: opacity 0.3s;
+}
+
+#contact a:hover{
+	opacity: 0.5;
 }

@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<meta http-equiv="author" content="Maxim Brochin"/>
 		<meta http-equiv="content-language" content="en-CA"/>
+		<link rel="icon" type="image/x-icon" href="icon.ico"/>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 	</head>
 	<body>
@@ -15,7 +16,11 @@
 			<p>Fetch the latest science news from around the world!</p>
 		</header>
 		<div id="about">
-			<p>This webapp was developed to fetch articles from the Google News page, specifically about science, and display them here with hyperlink included. Using Heroku, I was able to host this webapp and demonstrate my HTML, CSS, and Javascript knowledge. Webapp made by Maxim Brochin.</p>
+			<h2>Why?</h2>
+			<p>I created this webapp to fetch articles on the latest science news as an alternative to searching for it on Google. This webapp is a demonstration of my programming skills, utilizing HTML and CSS for web-design, Javascript for scripting, and resources that aided in building the site.</p>
+			<h2>How?</h2>
+			<p>The webapp is hosted using Heroku, running on the nodejs environment with the Express module. HTML and CSS were used to design the webapp. Using Cheerio and the Request module in Javascript, the app web-scrapes articles off the Google News RSS feed and displays them on the site. This script is then bundled using Browserify in order to use the modules in-browser.</p>
+			<h5>Made by Maxim Brochin</h5>
 		</div>
 		<footer id="nav">
 			<ul>

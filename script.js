@@ -39809,14 +39809,17 @@ const cheerio = require('cheerio');
 function fetchArticles(callback){
 	// Open url and load html
 	var data = [];
-	request('https://cors-anywhere.herokuapp.com/https://news.google.com/rss/search?hl=en-CA&gl=CA&ceid=CA:en&q=science+news&tbm=nws',(error,response,body) => {
+	request('https://cors-anywhere.herokuapp.com/https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen',(error,response,body) => {
 		if(!error && response.statusCode == 200){
 			const $ = cheerio.load(body);
-			// Search every item for title and link and store it in list
+			// Search every item up to n for title and link, and store it in list
+			let i = 0;
 			$('item').each(function () {
+				if(i > 14) return false;
 				let title = $(this).find('title').text();
 				let url = "https://news.google.com/articles/" + $(this).find('guid').text();
 				data.push({title,url});
+				i++;
 			});
 			callback(null,data);
 		}else{
@@ -39848,7 +39851,7 @@ function displayArticles(){
 	// Execute fetchArticles and callback data
 	fetchArticles(function(error,data){
 		// Create and add row with article and link n times
-		for(let i=0;i<10;i++){
+		for(let i=0;i<data.length;i++){
 			let row = document.createElement("tr");
 			let article = document.createElement("td");
 			let link = document.createElement("a");
