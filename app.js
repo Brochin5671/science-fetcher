@@ -1,8 +1,12 @@
-// Get express
+// Require express
 const express = require('express');
 var app = express();
 
-// Use templates and setup port
-app.use(express.static(__dirname));
+// Serves static files without .html extension
+app.use(express.static(__dirname, {
+	extensions: ['html']
+}));
+
+// Setup port
 var port = process.env.PORT || 8000;
 app.listen(port);
