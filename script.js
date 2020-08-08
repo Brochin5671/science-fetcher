@@ -39817,9 +39817,10 @@ function fetchArticles(callback){
 			$('item').each(function () {
 				if(i > 14) return false;
 				let title = $(this).find('title').text();
-				let url = "https://news.google.com/articles/" + $(this).find('guid').text();
+				let url = $(this).find('link')[0].next.data;
 				data.push({title,url});
 				i++;
+				//[0].url[0].next.data
 			});
 			callback(null,data);
 		}else{
@@ -39850,6 +39851,7 @@ function displayArticles(){
 	table.style.display = "table";
 	// Execute fetchArticles and callback data
 	fetchArticles(function(error,data){
+		console.log(data);
 		// Create and add row with article and link n times
 		for(let i=0;i<data.length;i++){
 			let row = document.createElement("tr");
