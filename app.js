@@ -4,7 +4,7 @@ var app = express();
 var port = process.env.PORT || 8000;
 
 // Redirect to secure if request is not secure and not localhost
-if(port != 8000){
+if(port == process.env.PORT){
 	// Enable reverse proxy support
 	app.enable('trust proxy');
 	app.use((req,res,next) => {
