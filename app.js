@@ -11,15 +11,12 @@ const cheerio = require('cheerio');
 // Compress all responses
 app.use(compression());
 
-// Redirect to secure and non-www if request is not secure and not localhost
+// Redirect to secure if request is not secure and not localhost
 if(port == process.env.PORT){
 	// Enable reverse proxy support
 	app.enable('trust proxy');
 	app.use((req,res,next) => {
-		if(req.headers.host.slice(0,4) === 'www.') {
-			var newHost = req.headers.host.slice(4);
-			res.redirect(301, 'https://'+newHost+req.url);
-		}else if(req.secure) next();
+		if(req.secure) next();
 		else res.redirect(301,'https://'+req.headers.host+req.url);
 	});
 }
