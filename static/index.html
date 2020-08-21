@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Fetch the latest science news from around the world · Science Fetcher</title>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="description" content="Fetch the latest science news from around the world with Science Fetcher!">
+		<meta name="author" content="Maxim Brochin">
+		<meta name="keywords" content="science,fetcher,news">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="Fetch the latest science news from around the world · Science Fetcher">
+		<meta property="og:description" content="Fetch the latest science news from around the world!">
+		<meta property="og:image" content="apple-touch-icon.png?v=2">
+		<meta property="og:url" content="https://science-fetcher.herokuapp.com">
+		<meta name="twitter:card" content="summary_large_image">
+		<meta property="og:site_name" content="Science Fetcher">
+		<meta name="twitter:image:alt" content="Science Fetcher Logo">
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
+		<link rel="manifest" href="/site.webmanifest?v=2">
+		<link rel="mask-icon" href="/safari-pinned-tab.svg?v=2" color="#5bbad5">
+		<link rel="shortcut icon" href="/favicon.ico?v=2">
+		<meta name="msapplication-TileColor" content="#00aba9">
+		<meta name="theme-color" content="#ffffff">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="canonical" href="https://science-fetcher.herokuapp.com">
+		<script src="script.js"></script>
+	</head>
+	<body onload="onLoadScripts()">
+		<header class="container-fluid navbar navbar-expand-sm fixed-top navbar-dark navbar-custom shadow">
+			<a class="navbar-brand font-weight-bold user-select-none" href="/">Science Fetcher</a>
+			<button class="navbar-toggler" data-toggle="collapse" data-target="#target_collapse">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="target_collapse">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item user-select-none active"><a class="nav-link" href="/">Home</a></li>
+					<li class="nav-item user-select-none"><a class="nav-link" href="about">About</a></li>
+					<li class="nav-item user-select-none"><a class="nav-link" href="contact">Contact</a></li>
+				</ul>
+			</div>
+		</header>
+		<main>
+			<div class="container-fluid">
+				<div class="card text-center mb-4 shadow-sm">
+					<div class="card-body">
+						<noscript>
+							<h4 class="card-title font-weight-bold">Sorry! Javascript is turned off or not supported on your browser!</h4>
+							<h4 class="card-title font-weight-bold mb-3">Enable Javascript for Science Fetcher to work!</h4>
+						</noscript>
+						<h4 class="card-title font-weight-bold mb-3">Welcome to Science Fetcher!</h4>
+						<h6 class="card-subtitle mb-2 text-muted">Fetch the latest science news from around the world!</h6>
+						<h6 class="card-subtitle mb-2 text-muted firstvisit">Get started by selecting a topic!</h6>
+					</div>
+				</div>
+				<div class="btn-group btn-group-toggle d-none d-md-flex" data-toggle="buttons" role="group">
+					<label class="btn btn-custom shadow">
+						<input type="radio" name="options" id="option1" value="gen" onclick="displayArticles(this.value)">General
+					</label>
+					<label class="btn btn-custom shadow">
+						<input type="radio" name="options" id="option2" value="space" onclick="displayArticles(this.value)">Space
+					</label>
+					<label class="btn btn-custom shadow">
+						<input type="radio" name="options" id="option3" value="tech" onclick="displayArticles(this.value)">Technology
+					</label>
+					<label class="btn btn-custom shadow">
+						<input type="radio" name="options" id="option4" value="bio" onclick="displayArticles(this.value)">Biology
+					</label>
+					<label class="btn btn-custom shadow">
+						<input type="radio" name="options" id="option5" value="comp" onclick="displayArticles(this.value)">Computing
+					</label>
+					<label class="btn btn-custom shadow">
+						<input type="radio" name="options" id="option6" value="phys" onclick="displayArticles(this.value)">Physics
+					</label>
+				</div>
+				<div class="dropdown d-md-none">
+					<button class="btn btn-custom shadow dropdown-toggle" type="button" data-toggle="dropdown">Topics</button>
+					<div class="dropdown-menu shadow">
+						<a class="dropdown-item" onclick="displayArticles('gen')">General</a>
+						<a class="dropdown-item" onclick="displayArticles('space')">Space</a>
+						<a class="dropdown-item" onclick="displayArticles('tech')">Technology</a>
+						<a class="dropdown-item" onclick="displayArticles('bio')">Biology</a>
+						<a class="dropdown-item" onclick="displayArticles('comp')">Computing</a>
+						<a class="dropdown-item" onclick="displayArticles('phys')">Physics</a>
+					</div>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
+				</ul>
+			</div>
+		</main>
+		<footer>
+			<div class="container-fluid mt-4 py-4 footer-bg text-white">
+				<div class="container">
+					<div class="row">
+						<div class="col-md text-center">
+							<h3>Navigation</h3>
+							<ul class="list-unstyled">
+								<li class="mt-3 md-2"><a class="text-decoration-none footer-link" href="/">Home</a></li>
+								<li class="m-2"><a class="text-decoration-none footer-link" href="about">About</a></li>
+								<li class="m-2"><a class="text-decoration-none footer-link" href="contact">Contact</a></li>
+							</ul>
+						</div>
+						<hr class="clearfix w-100 d-md-none pb-3">
+						<div class="col-md text-center">
+							<h3>Additional Information</h3>
+							<p class="text-white-50 mt-3 m-0">Powered by Heroku in the Node.js environment</p>
+							<p class="text-white-50 m-0">Designed with HTML, CSS3, and Bootstrap v4.5.2</p>
+							<p class="text-white-50 m-0">Source code on <span><a class="footer-git-link" href="https://github.com/Brochin5671/science-fetcher" target="_blank">Github</a></span></p>
+						</div>
+					</div>
+					<hr class="clearfix w-100 d-md-none pb-3">
+					<div class="row mt-4">
+						<div class="col-md text-center">
+							<p class="text-white">Developed by Maxim Brochin</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	</body>
+</html>
