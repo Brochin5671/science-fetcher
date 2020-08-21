@@ -21,9 +21,8 @@ if(port == process.env.PORT){
 	});
 }
 
-// Serves static files from static without .html extension and root
-app.use(express.static('static', { extensions: ['html'] } ));
-app.use(express.static(__dirname));
+// Serves static files without .html extension
+app.use(express.static(__dirname, { extensions: ['html'] } ));
 
 // Listen to port
 app.listen(port);
