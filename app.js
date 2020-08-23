@@ -8,8 +8,9 @@ var port = process.env.PORT || 8000;
 const request = require('request');
 const cheerio = require('cheerio');
 
-// Compress all responses
+// Compress all responses and remove x-powered-by header
 app.use(compression());
+app.disable('x-powered-by');
 
 // Redirect to secure if request is not secure and not localhost
 if(port == process.env.PORT){
@@ -22,7 +23,7 @@ if(port == process.env.PORT){
 }
 
 // Serves static files without .html extension
-app.use(express.static(__dirname, { extensions: ['html'] } ));
+app.use(express.static('public', { extensions: ['html'] } ));
 
 // Listen to port
 app.listen(port);

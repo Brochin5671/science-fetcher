@@ -62,16 +62,39 @@ function displayArticles(topic){
 	const data = fetchArticles(id);
 	// Update links, titles, and dates once async function has finished
 	data.then((data) => {
-		// Update links, titles, and dates
+		try{
+			// Update links, titles, and dates
+			for(let i=0;i<articleList.length;i++){
+				// Update link, title, and date with data
+				articleList[i].querySelector('a').href = data[i].url;
+				articleList[i].querySelector('a').innerHTML = data[i].title;
+				articleList[i].querySelector('p').innerHTML = data[i].date;
+				// Remove spinner if exists
+				if(articleList[i].querySelector('span') != null){
+					articleList[i].querySelector('span').remove();
+				}
+			}
+		}catch(e){ // Return server error message if missing data
+			// Update links, titles, and dates
+			for(let i=0;i<articleList.length;i++){
+				// Remove spinner if exists
+				if(articleList[i].querySelector('span') != null){
+					articleList[i].querySelector('span').remove();
+				}
+				// Disable link and add failure text
+				articleList[i].querySelector('a').removeAttribute('href');
+				articleList[i].querySelector('a').innerHTML = 'Failed to fetch articles - Server Error (try again)';
+			}
+		}
+	}, (failure) => { // Return connection error message if promise was rejected
 		for(let i=0;i<articleList.length;i++){
 			// Remove spinner if exists
 			if(articleList[i].querySelector('span') != null){
 				articleList[i].querySelector('span').remove();
 			}
-			// Update link, title, and date with data
-			articleList[i].querySelector('a').href = data[i].url;
-			articleList[i].querySelector('a').innerHTML = data[i].title;
-			articleList[i].querySelector('p').innerHTML = data[i].date;
+			// Disable link and add failure text
+			articleList[i].querySelector('a').removeAttribute('href');
+			articleList[i].querySelector('a').innerHTML = 'Failed to fetch articles - Connection Error (try again)';
 		}
 	});
 }

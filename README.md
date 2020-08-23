@@ -7,6 +7,13 @@ Science Fetcher is a webapp able to fetch articles on the latest science news fr
 
 ## Changelog
 
+### 2.0.1 (2020-08-23)
+* Added sitemap link to footer on home page
+* Added error handling for connection error and missing data
+* Added more SEOs: removed X-Powered-By header and heading tag improvements
+* Improved favicons with compressed images, site names, and theme colors
+* Fixed security issue allowing access to all root files by allowing access to files only in public directory
+
 ### 2.0.0 (2020-08-21)
 * Redesigned entire site with Bootstrap 4
 * Added 6 topics to choose from: general, space, tech, biology, computing, and physics
