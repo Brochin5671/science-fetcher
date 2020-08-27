@@ -31,14 +31,33 @@ app.listen(port);
 // Use string parser with 1mb limit
 app.use(express.text( { limit: '1mb' } ));
 
-// Get post request from /data, scrape information, and return article data
+// Get post request from /data, get ID, scrape information with provided ID, and return article data
 app.post('/data',(req,res) => {
-	requestURL(req.body).then((data) => {
+	const id = getID(req.body);
+	requestURL(id).then((data) => {
 		res.json(data);
 	},(failure) => { // Log any failures
 		console.log(failure);
 	});
 });
+
+// Create topic map where topic is key and id is value
+function createTopicMap(){
+	topicMap = new Map();
+	topicMap.set('General','CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen');
+	topicMap.set('Space','CAAqIggKIhxDQkFTRHdvSkwyMHZNREU0TXpOM0VnSmxiaWdBUAE?hl=en-CA&gl=CA&ceid=CA%3Aen');
+	topicMap.set('Technology','CAAqKggKIiRDQkFTRlFvSUwyMHZNRGRqTVhZU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen');
+	topicMap.set('Biology','CAAqJQgKIh9DQkFTRVFvSUwyMHZNREUxTkRBU0JXVnVMVWRDS0FBUAE?hl=en-CA&gl=CA&ceid=CA%3Aen');
+	topicMap.set('Computing','CAAqIQgKIhtDQkFTRGdvSUwyMHZNREZzY0hNU0FtVnVLQUFQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen');
+	topicMap.set('Physics','CAAqIQgKIhtDQkFTRGdvSUwyMHZNRFZ4YW5RU0FtVnVLQUFQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen');
+	console.log('Created topic map'); //testing
+}
+createTopicMap();
+
+// Retrieves id from map with topic key and returns it
+function getID(topic){
+	return topicMap.get(topic);
+}
 
 // Declare article object
 function Article(){
@@ -52,7 +71,7 @@ function Article(){
 // Gets article data by requesting URL with given ID, scrapes data, and returns the list as a promise
 function requestURL(id){
 	return new Promise(function(resolve,reject){
-		request('https://news.google.com/topics/'+id,(error,response,body) => {
+		request('https://news.google.com/topics/'+id+'$3C',(error,response,body) => { // Escape code $3C prevents any unwanted links from being added
 			// Check for errors after requesting url
 			if(!error && response.statusCode == 200){
 				// Search n items for title, link, date, site, and image, and store it in an object which is pushed to a list

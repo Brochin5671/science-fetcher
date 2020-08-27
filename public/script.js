@@ -1,27 +1,11 @@
-// Create topic map where topic is key and id is value
-function createTopicMap(){
-	topicMap = new Map();
-	topicMap.set('General','CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKRFFTZ0FQAQ');
-	topicMap.set('Space','CAAqIggKIhxDQkFTRHdvSkwyMHZNREU0TXpOM0VnSmxiaWdBUAE');
-	topicMap.set('Technology','CAAqKggKIiRDQkFTRlFvSUwyMHZNRGRqTVhZU0JXVnVMVWRDR2dKRFFTZ0FQAQ');
-	topicMap.set('Biology','CAAqJQgKIh9DQkFTRVFvSUwyMHZNREUxTkRBU0JXVnVMVWRDS0FBUAE');
-	topicMap.set('Computing','CAAqIQgKIhtDQkFTRGdvSUwyMHZNREZzY0hNU0FtVnVLQUFQAQ');
-	topicMap.set('Physics','CAAqIQgKIhtDQkFTRGdvSUwyMHZNRFZ4YW5RU0FtVnVLQUFQAQ');
-}
-
-// Retrieves id from map with topic key and returns it
-function getID(topic){
-	return topicMap.get(topic);
-}
-
-// Sends post request to fetch articles with given id and returns article data
-async function fetchArticles(id){
+// Sends post request to fetch articles with given topic and returns article data
+async function fetchArticles(topic){
 	const options = {
 		method: 'POST',
 		headers:{
 			'Content-Type': 'text/plain',
 		},
-		body: id
+		body: topic
 	};
 	const res = await fetch('/data',options);
 	const data = await res.json();
@@ -63,9 +47,8 @@ function displayArticles(topic){
 	}
 	document.querySelector('#'+topic).className += ' active';
 	
-	// Fetch id of topic and fetch article data
-	const id = getID(topic);
-	const data = fetchArticles(id);
+	// Fetch article data
+	const data = fetchArticles(topic);
 	// Update links, titles, and dates once async function has finished
 	data.then((data) => {
 		for(let i=0;i<articleList.length;i++){
@@ -114,6 +97,5 @@ function checkFirstVisit(){
 // Run scripts when page loads
 function onLoadScripts(){
 	checkFirstVisit();
-	createTopicMap();
 	displayArticles(sessionStorage.getItem('btnPressed')); // Use last selected button's value
 }
