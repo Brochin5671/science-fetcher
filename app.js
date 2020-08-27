@@ -33,29 +33,55 @@ app.use(express.text( { limit: '1mb' } ));
 
 // Get post request from /data, scrape information, and return article data
 app.post('/data',(req,res) => {
-	// Open url and load html
-	var data = [];
-	request('https://news.google.com/rss/topics/'+req.body,(error,response,body) => {
-		// Check for errors after requesting url
-		if(!error && response.statusCode == 200){
-			// Search the first n items for title, link, and date, and store it in list
-			const $ = cheerio.load(body);
-			let i = 0;
-			$('item').each(function () {
-				if(i > 14) return false;
-				const title = $(this).find('title').text();
-				const url = $(this).find('link')[0].next.data;
-				const date = $(this).find('pubDate').text().substring(5,16);
-				data.push({title,url,date});
-				i++;
-			});
-			// Send back data in response
-			res.json(data);
-		}
+	requestURL(req.body).then((data) => {
+		res.json(data);
+	},(failure) => { // Log any failures
+		console.log(failure);
 	});
 });
 
-// Error 404 page, has to be last route
+// Declare article object
+function Article(){
+	this.title = '';
+	this.url = '';
+	this.date = '';
+	this.site = '';
+	this.image = '';
+}
+
+// Gets article data by requesting URL with given ID, scrapes data, and returns the list as a promise
+function requestURL(id){
+	return new Promise(function(resolve,reject){
+		request('https://news.google.com/topics/'+id,(error,response,body) => {
+			// Check for errors after requesting url
+			if(!error && response.statusCode == 200){
+				// Search n items for title, link, date, site, and image, and store it in an object which is pushed to a list
+				const $ = cheerio.load(body);
+				let i = 0;
+				let n = 14;
+				var data = [];
+				$('div.NiLAwe.y6IFtc.R7GTQ.keNKEd.j7vNaf.nID9nc').each(function () {
+					if(i > n) return false;
+					let article = new Article();
+					article.title = $(this).find('a.DY5T1d').text();
+					article.url = $(this).find('a.DY5T1d').attr('href');
+					article.date = $(this).find('time').text();
+					article.site = $(this).find('a.wEwyrc.AVN2gc.uQIVzc.Sksgp').text();
+					const img = $(this).find('img').attr('srcset').split(' '); // If there are two links, splits them
+					article.image = img[0]; // Use the first link
+					data.push(article);
+					i++;
+				});
+				// Send list (success)
+				resolve(data);
+			}else{
+				reject(error || response.statusCode); // Send error (failure)
+			}
+		});
+	});
+}
+
+// Send 404 page if page not found, has to be last route
 app.get('*',(req,res) => {
-  res.status(404).send('<h1 style="font-family: Verdana; margin-bottom: 0; text-align: center;">Error 404</h1><p style="font-family: Verdana; text-align: center;">Page not found</p>');
+  res.status(404).sendFile(__dirname+'/404-page.html');
 });

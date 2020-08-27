@@ -1,16 +1,16 @@
 // Create topic map where topic is key and id is value
 function createTopicMap(){
 	topicMap = new Map();
-	topicMap.set('gen','CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKRFFTZ0FQAQ');
-	topicMap.set('space','CAAqIggKIhxDQkFTRHdvSkwyMHZNREU0TXpOM0VnSmxiaWdBUAE');
-	topicMap.set('tech','CAAqKggKIiRDQkFTRlFvSUwyMHZNRGRqTVhZU0JXVnVMVWRDR2dKRFFTZ0FQAQ');
-	topicMap.set('bio','CAAqJQgKIh9DQkFTRVFvSUwyMHZNREUxTkRBU0JXVnVMVWRDS0FBUAE');
-	topicMap.set('comp','CAAqIQgKIhtDQkFTRGdvSUwyMHZNREZzY0hNU0FtVnVLQUFQAQ');
-	topicMap.set('phys','CAAqIQgKIhtDQkFTRGdvSUwyMHZNRFZ4YW5RU0FtVnVLQUFQAQ');
+	topicMap.set('General','CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKRFFTZ0FQAQ');
+	topicMap.set('Space','CAAqIggKIhxDQkFTRHdvSkwyMHZNREU0TXpOM0VnSmxiaWdBUAE');
+	topicMap.set('Technology','CAAqKggKIiRDQkFTRlFvSUwyMHZNRGRqTVhZU0JXVnVMVWRDR2dKRFFTZ0FQAQ');
+	topicMap.set('Biology','CAAqJQgKIh9DQkFTRVFvSUwyMHZNREUxTkRBU0JXVnVMVWRDS0FBUAE');
+	topicMap.set('Computing','CAAqIQgKIhtDQkFTRGdvSUwyMHZNREZzY0hNU0FtVnVLQUFQAQ');
+	topicMap.set('Physics','CAAqIQgKIhtDQkFTRGdvSUwyMHZNRFZ4YW5RU0FtVnVLQUFQAQ');
 }
 
 // Retrieves id from map with topic key and returns it
-function getTopic(topic){
+function getID(topic){
 	return topicMap.get(topic);
 }
 
@@ -40,62 +40,65 @@ function displayArticles(topic){
 			spinner.className = 'spinner-border spinner-border-sm ml-auto';
 			articleList[i].insertBefore(spinner,articleList[i].querySelector('a'));
 		}
-		// Disable link and add loading text
+		// Disable link and display loading labels
 		articleList[i].querySelector('a').removeAttribute('href');
 		articleList[i].querySelector('a').innerHTML = ' Fetching...';
-		articleList[i].querySelector('p').innerHTML = 'N/A';
+		articleList[i].querySelector('p').innerHTML = '';
+		articleList[i].querySelector('img').src = 'favicon-32x32.png';
+		articleList[i].querySelector('img').alt = "Fetching image";
 	}
 	
 	// Store session item for button selected
 	if(sessionStorage.getItem('btnPressed') === null){ // Beginning of session check
-		sessionStorage.setItem('btnPressed','gen');
+		sessionStorage.setItem('btnPressed','General');
+		topic = sessionStorage.getItem('btnPressed');
 	}else{
 		sessionStorage.setItem('btnPressed',topic);
 	}
-	topic = sessionStorage.getItem('btnPressed');
 	
-	// Toggle button (test for now)
-	toggleButtonFromDropdown(topic);
+	// Toggle selected topic only and disable buttons while fetching
+	let btnList = document.querySelectorAll('.topic');
+	for(let i=0;i<btnList.length;i++){
+		btnList[i].className = 'nav-link topic disabled';
+	}
+	document.querySelector('#'+topic).className += ' active';
 	
 	// Fetch id of topic and fetch article data
-	const id = getTopic(topic);
+	const id = getID(topic);
 	const data = fetchArticles(id);
 	// Update links, titles, and dates once async function has finished
 	data.then((data) => {
-		try{
-			// Update links, titles, and dates
-			for(let i=0;i<articleList.length;i++){
-				// Update link, title, and date with data
-				articleList[i].querySelector('a').href = data[i].url;
+		for(let i=0;i<articleList.length;i++){
+			// Update links, titles, site & dates, and images with data, and remove spinner
+			articleList[i].querySelector('.spinner-border').remove();
+			try{
+				articleList[i].querySelector('a').href = 'https://news.google.com'+data[i].url;
 				articleList[i].querySelector('a').innerHTML = data[i].title;
-				articleList[i].querySelector('p').innerHTML = data[i].date;
-				// Remove spinner if exists
-				if(articleList[i].querySelector('span') != null){
-					articleList[i].querySelector('span').remove();
-				}
-			}
-		}catch(e){ // Return server error message if missing data
-			// Update links, titles, and dates
-			for(let i=0;i<articleList.length;i++){
-				// Remove spinner if exists
-				if(articleList[i].querySelector('span') != null){
-					articleList[i].querySelector('span').remove();
-				}
-				// Disable link and add failure text
-				articleList[i].querySelector('a').removeAttribute('href');
-				articleList[i].querySelector('a').innerHTML = 'Failed to fetch articles - Server Error (try again)';
+				articleList[i].querySelector('p').innerHTML = data[i].site+" - "+data[i].date;
+				articleList[i].querySelector('img').src = data[i].image;
+				articleList[i].querySelector('img').alt = data[i].title;
+			}catch(e){ // Return server error message if missing data
+				articleList[i].querySelector('a').innerHTML = 'Failed to fetch article - Server Error (try again)';
+				articleList[i].querySelector('img').alt = "No image found";
 			}
 		}
+		// Enable buttons
+		for(let i=0;i<btnList.length;i++){
+			btnList[i].className = 'nav-link topic';
+		}
+		document.querySelector('#'+topic).className += ' active';
 	}, (failure) => { // Return connection error message if promise was rejected
 		for(let i=0;i<articleList.length;i++){
-			// Remove spinner if exists
-			if(articleList[i].querySelector('span') != null){
-				articleList[i].querySelector('span').remove();
-			}
-			// Disable link and add failure text
-			articleList[i].querySelector('a').removeAttribute('href');
-			articleList[i].querySelector('a').innerHTML = 'Failed to fetch articles - Connection Error (try again)';
+			// Remove spinner and add failure text
+			articleList[i].querySelector('.spinner-border').remove();
+			articleList[i].querySelector('a').innerHTML = 'Failed to fetch article - Connection Error (try again)';
+			articleList[i].querySelector('img').alt = "No image found";
 		}
+		// Enable buttons
+		for(let i=0;i<btnList.length;i++){
+			btnList[i].className = 'nav-link topic';
+		}
+		document.querySelector('#'+topic).className += ' active';
 	});
 }
 
@@ -108,32 +111,9 @@ function checkFirstVisit(){
 	}
 }
 
-// Find and toggle button based on session item value (come fix this sometime)
-function toggleButtonSession(topic){
-	// Change to default if beginning of session
-	if(topic === null){
-		topic = 'gen';
-	}
-	$('label').each(function(){
-		if($(this).find('input')[0].defaultValue == topic){
-			$(this).button('toggle');
-		}
-	});
-}
-
-// Toggle buttons in button group incase user is using dropdown and switches back to button group
-function toggleButtonFromDropdown(topic){
-	$('label').each(function(){
-		if($(this).find('input')[0].defaultValue == topic){
-			$(this).button('toggle');
-		}
-	});
-}
-
 // Run scripts when page loads
 function onLoadScripts(){
 	checkFirstVisit();
 	createTopicMap();
-	toggleButtonSession(sessionStorage.getItem('btnPressed'));
 	displayArticles(sessionStorage.getItem('btnPressed')); // Use last selected button's value
 }

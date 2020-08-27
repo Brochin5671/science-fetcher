@@ -7,6 +7,21 @@ Science Fetcher is a webapp able to fetch articles on the latest science news fr
 
 ## Changelog
 
+### 2.1.0 (2020-08-26)
+* Added thumbnails to articles
+* Added feature to prevent fetching while already fetching
+* Changed topic selection to be a collapsible menu
+* Changed article to be clickable
+* Changed date to display time since posted
+* Changed article list and header to not stretch to the entire page
+* Changed about page navigation bar to not stretch to the entire page
+* Improved webscraping code: RSS feed is no longer used, error handling, and storing data in objects
+* Improved 404 page
+* Improved error handling for missing data (connection error)
+* Improved script: changed values for readability, cleaner display labels, and session storage improvement
+* Fixed open graph title for home page
+* Removed some obsolete styles in stylesheet
+
 ### 2.0.1 (2020-08-23)
 * Added sitemap link to footer on home page
 * Added error handling for connection error and missing data

@@ -44,99 +44,117 @@
 			</div>
 		</header>
 		<main>
-			<nav class="container navbar navbar-expand-sm navbar-dark navbar-custom shadow rounded-bottom">
-				<p class="navbar-brand font-weight-bold user-select-none m-0 mr-3">Content</p>
-				<button class="navbar-toggler" data-toggle="collapse" data-target="#nav_collapse">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="nav_collapse">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item user-select-none"><a class="nav-link" href="#why">Why?</a></li>
-						<li class="nav-item user-select-none"><a class="nav-link" href="#how">How?</a></li>
-						<li class="nav-item user-select-none"><a class="nav-link" href="#changelog">Changelog</a></li>
-					</ul>
-				</div>
-			</nav>
-			<div class="on-page-anchor" id="why"></div>
 			<div class="container">
-				<div class="row">
-					<div class="col card mb-4 shadow-sm">
-						<div class="card-body">
-							<h1 class="h2 card-title font-weight-bold">Why?</h1>
-							<p class="card-text">This webapp was created to fetch articles on the latest science news from Google News as a faster alternative to searching for it on Google. Even though the webapp scrapes content from Google News, I wanted the articles to be provided in an alternative manner. This webapp is intended to be a demonstration of my full stack development skills, being able to develop a frontend with the Bootstrap 4 framework, and backend with Express.js powered by Heroku.</p>
+				<nav class="navbar navbar-expand-sm navbar-dark navbar-custom shadow rounded-bottom">
+					<p class="h5 m-0 mr-3 text-white font-weight-bold user-select-none">Content</p>
+					<button class="navbar-toggler" data-toggle="collapse" data-target="#nav_collapse">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="nav_collapse">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item user-select-none"><a class="nav-link" href="#why">Why?</a></li>
+							<li class="nav-item user-select-none"><a class="nav-link" href="#how">How?</a></li>
+							<li class="nav-item user-select-none"><a class="nav-link" href="#changelog">Changelog</a></li>
+						</ul>
+					</div>
+				</nav>
+				<div class="on-page-anchor" id="why"></div>
+				<div class="container">
+					<div class="row">
+						<div class="col card mb-4 shadow-sm">
+							<div class="card-body">
+								<h1 class="h2 card-title font-weight-bold">Why?</h1>
+								<p class="card-text">This webapp was created to fetch articles on the latest science news from Google News as a faster alternative to searching for it on Google. Even though the webapp scrapes content from Google News, I wanted the articles to be provided in an alternative manner. This webapp is intended to be a demonstration of my full stack development skills, being able to develop a frontend with the Bootstrap 4 framework, and backend with Express.js powered by Heroku.</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="on-page-anchor" id="how"></div>
-				<div class="row">
-					<div class="col card mb-4 shadow-sm">
-						<div class="card-body">
-							<h2 class="card-title font-weight-bold mb-5">How?</h2>
-							<h2 class="h4 card-subtitle font-weight-bold mb-3">Frontend</h2>
-							<p class="card-text mb-4">The frontend was developed using HTML &amp; CSS3 with the Bootstrap 4 framework alongside Javascript for functionality. When selecting a topic, the script sends a post request with an ID (required for searching Google News topics) to the backend to retrieve a list and displays it on the page. On load, the home page checks if the client is visiting the site for the first time and remembers what topic was selected last in the session to display articles of.</p>
-							<h2 class="h4 card-subtitle font-weight-bold mb-4">Backend</h2>
-							<p class="card-text">The backend was developed using the Node.js runtime environment with Heroku deploying the webapp. Express.js is used as the server framework with the Compression module serving all compressed responses. When sending a post request, the Request and Cheerio modules are used on the backend to scrape content from the provided Google News RSS feed URL, and send a list back to be displayed for the requested topic. To ensure a secure connection, a redirect from http to https takes place.</p>
+					<div class="on-page-anchor" id="how"></div>
+					<div class="row">
+						<div class="col card mb-4 shadow-sm">
+							<div class="card-body">
+								<h2 class="card-title font-weight-bold mb-5">How?</h2>
+								<h2 class="h4 card-subtitle font-weight-bold mb-3">Frontend</h2>
+								<p class="card-text mb-4">The frontend was developed using HTML &amp; CSS3 with the Bootstrap 4 framework alongside Javascript for functionality. When selecting a topic, the script sends a post request with an ID (required for searching Google News topics) to the backend to retrieve a list and displays it on the page. On load, the home page checks if the client is visiting the site for the first time and remembers what topic was selected last in the session to display articles of.</p>
+								<h2 class="h4 card-subtitle font-weight-bold mb-4">Backend</h2>
+								<p class="card-text">The backend was developed using the Node.js runtime environment with Heroku deploying the webapp. Express.js is used as the server framework with the Compression module serving all compressed responses. When sending a post request, the Request and Cheerio modules are used on the backend to scrape content from the provided Google News URL, and send a list back to be displayed for the requested topic. To ensure a secure connection, a redirect from http to https takes place.</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="on-page-anchor" id="changelog"></div>
-				<div class="row">
-					<div class="col card mb-4 shadow-sm">
-						<div class="card-body">
-							<h2 class="card-title font-weight-bold mb-5">Changelog</h2>
-							<h3 class="h4 card-subtitle font-weight-bold mb-3">2.0.1 (2020-08-23)</h3>
-							<ul>
-								<li>Added sitemap link to footer on home page</li>
-								<li>Added error handling for connection error and missing data</li>
-								<li>Added more SEOs: removed X-Powered-By header and heading tag improvements</li>
-								<li>Improved favicons with compressed images, site names, and theme colors</li>
-								<li>Fixed security issue allowing access to all root files by allowing access to files only in public directory</li>
-							</ul>
-							<h3 class="h4 card-subtitle font-weight-bold mb-3">2.0.0 (2020-08-21)</h3>
-							<ul>
-								<li>Redesigned entire site with Bootstrap 4</li>
-								<li>Added 6 topics to choose from: general, space, tech, biology, computing, and physics</li>
-								<li>Added date underneath article titles</li>
-								<li>Added footer to home page</li>
-								<li>Added and improved about page contents</li>
-								<li>Added feature to fetch articles when page loads</li>
-								<li>Added post request to backend for getting articles</li>
-								<li>Added local storage for removing first visit guide</li>
-								<li>Added session storage for remembering last selected button</li>
-								<li>Added 404 page to backend instead of redirecting to home page</li>
-								<li>Added more SEOs: favicons, social media, sitemap</li>
-								<li>Improved script.js (no more bundled code)</li>
-								<li>Improved fetching function to get articles from backend</li>
-								<li>Improved style.css to work with Bootstrap</li>
-								<li>Improved backend by serving compressed responses</li>
-								<li>Changed favicon design</li>
-								<li>Changed page titles</li>
-								<li class="mb-5">Removed obsolete meta tags</li>
-							</ul>
-							<h3 class="h4 card-subtitle font-weight-bold mb-3">1.1.0 (2020-08-09)</h3>
-							<ul>
-								<li>Added text stroke and shadows to headers</li>
-								<li>Added gradient to site header</li>
-								<li class="mb-5">Added underline to links when hovered over</li>
-							</ul>
-							<h3 class="h4 card-subtitle font-weight-bold mb-3">1.0.2 (2020-08-08)</h3>
-							<ul>
-								<li>Added non-secure to secure redirect</li>
-								<li class="mb-5">Added 404 to home page redirect</li>
-							</ul>
-							<h3 class="h4 card-subtitle font-weight-bold mb-3">1.0.1 (2020-08-08)</h3>
-							<ul>
-								<li>Added canonical tags</li>
-								<li>Added shadow for navigation bar</li>
-								<li>Added feature to remove .html extension in URLs</li>
-								<li class="mb-5">Added comment for bundled info about script.js</li>
-							</ul>
-							<h3 class="h4 card-subtitle font-weight-bold mb-3">1.0.0 (2020-08-07)</h3>
-							<ul>
-								<li>Clicking button fetches 15 articles with links</li>
-								<li>3 pages: home, about (2 sections), and contact (mail to email)</li>
-								<li class="mb-5">Navigation bar fixed to the bottom</li>
-							</ul>
+					<div class="on-page-anchor" id="changelog"></div>
+					<div class="row">
+						<div class="col card mb-4 shadow-sm">
+							<div class="card-body">
+								<h2 class="card-title font-weight-bold mb-5">Changelog</h2>
+								<h3 class="h4 card-subtitle font-weight-bold mb-3">2.1.0 (2020-08-26)</h3>
+								<ul>
+									<li>Added thumbnails to articles</li>
+									<li>Added feature to prevent fetching while already fetching</li>
+									<li>Changed topic selection to be a collapsible menu</li>
+									<li>Changed article to be clickable</li>
+									<li>Changed date to display time since posted</li>
+									<li>Changed article list and header to not stretch to the entire page</li>
+									<li>Changed about page navigation bar to not stretch to the entire page</li>
+									<li>Improved webscraping code: RSS feed is no longer used, error handling, and storing data in objects</li>
+									<li>Improved 404 page</li>
+									<li>Improved error handling for missing data (connection error)</li>
+									<li>Improved script: changed values for readability, cleaner display labels, and session storage improvement</li>
+									<li>Fixed open graph title for home page</li>
+									<li>Removed some obsolete styles in stylesheet</li>
+								</ul>
+								<h3 class="h4 card-subtitle font-weight-bold mb-3">2.0.1 (2020-08-23)</h3>
+								<ul>
+									<li>Added sitemap link to footer on home page</li>
+									<li>Added error handling for connection error and missing data</li>
+									<li>Added more SEOs: removed X-Powered-By header and heading tag improvements</li>
+									<li>Improved favicons with compressed images, site names, and theme colors</li>
+									<li>Fixed security issue allowing access to all root files by allowing access to files only in public directory</li>
+								</ul>
+								<h3 class="h4 card-subtitle font-weight-bold mb-3">2.0.0 (2020-08-21)</h3>
+								<ul>
+									<li>Redesigned entire site with Bootstrap 4</li>
+									<li>Added 6 topics to choose from: general, space, tech, biology, computing, and physics</li>
+									<li>Added date underneath article titles</li>
+									<li>Added footer to home page</li>
+									<li>Added and improved about page contents</li>
+									<li>Added feature to fetch articles when page loads</li>
+									<li>Added post request to backend for getting articles</li>
+									<li>Added local storage for removing first visit guide</li>
+									<li>Added session storage for remembering last selected button</li>
+									<li>Added 404 page to backend instead of redirecting to home page</li>
+									<li>Added more SEOs: favicons, social media, sitemap</li>
+									<li>Improved script.js (no more bundled code)</li>
+									<li>Improved fetching function to get articles from backend</li>
+									<li>Improved style.css to work with Bootstrap</li>
+									<li>Improved backend by serving compressed responses</li>
+									<li>Changed favicon design</li>
+									<li>Changed page titles</li>
+									<li class="mb-5">Removed obsolete meta tags</li>
+								</ul>
+								<h3 class="h4 card-subtitle font-weight-bold mb-3">1.1.0 (2020-08-09)</h3>
+								<ul>
+									<li>Added text stroke and shadows to headers</li>
+									<li>Added gradient to site header</li>
+									<li class="mb-5">Added underline to links when hovered over</li>
+								</ul>
+								<h3 class="h4 card-subtitle font-weight-bold mb-3">1.0.2 (2020-08-08)</h3>
+								<ul>
+									<li>Added non-secure to secure redirect</li>
+									<li class="mb-5">Added 404 to home page redirect</li>
+								</ul>
+								<h3 class="h4 card-subtitle font-weight-bold mb-3">1.0.1 (2020-08-08)</h3>
+								<ul>
+									<li>Added canonical tags</li>
+									<li>Added shadow for navigation bar</li>
+									<li>Added feature to remove .html extension in URLs</li>
+									<li class="mb-5">Added comment for bundled info about script.js</li>
+								</ul>
+								<h3 class="h4 card-subtitle font-weight-bold mb-3">1.0.0 (2020-08-07)</h3>
+								<ul>
+									<li>Clicking button fetches 15 articles with links</li>
+									<li>3 pages: home, about (2 sections), and contact (mail to email)</li>
+									<li class="mb-5">Navigation bar fixed to the bottom</li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>

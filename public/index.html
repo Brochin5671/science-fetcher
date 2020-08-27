@@ -9,7 +9,7 @@
 		<meta name="keywords" content="science,fetcher,news">
 		<meta name="google-site-verification" content="AO6FSdUcBeUm5A8_Xq8ekbzSljKsfna6R0VqIIYbRi0"/>
 		<meta property="og:type" content="website">
-		<meta property="og:title" content="The Latest in scientific news · Science Fetcher">
+		<meta property="og:title" content="The latest in scientific news · Science Fetcher">
 		<meta property="og:description" content="Fetch the latest science news from around the world!">
 		<meta property="og:image" content="apple-touch-icon.png?v=3">
 		<meta property="og:url" content="https://science-fetcher.herokuapp.com">
@@ -46,65 +46,50 @@
 			</div>
 		</header>
 		<main>
-			<div class="container-fluid">
+			<div class="container">
 				<div class="card text-center mb-4 shadow-sm">
 					<div class="card-body">
 						<noscript>
 							<h1 class="h4 card-title font-weight-bold">Sorry! Javascript is turned off or not supported on your browser!</h1>
 							<h1 class="h4 card-title font-weight-bold mb-3">Enable Javascript for Science Fetcher to work!</h1>
 						</noscript>
-						<h1 class="h4 card-title font-weight-bold mb-3">Science Fetcher <span class="h6">v2.0.1</span></h1>
+						<h1 class="h4 card-title font-weight-bold mb-3">Science Fetcher <span class="h6">v2.1.0</span></h1>
 						<h2 class="h6 card-subtitle mb-2 text-muted">Fetch the latest science news from around the world!</h2>
 						<h2 class="h6 card-subtitle mb-2 text-muted firstvisit">Get started by selecting a topic!</h2>
 					</div>
 				</div>
-				<div class="btn-group btn-group-toggle d-none d-md-flex" data-toggle="buttons" role="group">
-					<label class="btn btn-custom shadow">
-						<input type="radio" name="options" id="option1" value="gen" onclick="displayArticles(this.value)">General
-					</label>
-					<label class="btn btn-custom shadow">
-						<input type="radio" name="options" id="option2" value="space" onclick="displayArticles(this.value)">Space
-					</label>
-					<label class="btn btn-custom shadow">
-						<input type="radio" name="options" id="option3" value="tech" onclick="displayArticles(this.value)">Technology
-					</label>
-					<label class="btn btn-custom shadow">
-						<input type="radio" name="options" id="option4" value="bio" onclick="displayArticles(this.value)">Biology
-					</label>
-					<label class="btn btn-custom shadow">
-						<input type="radio" name="options" id="option5" value="comp" onclick="displayArticles(this.value)">Computing
-					</label>
-					<label class="btn btn-custom shadow">
-						<input type="radio" name="options" id="option6" value="phys" onclick="displayArticles(this.value)">Physics
-					</label>
-				</div>
-				<div class="dropdown d-md-none">
-					<button class="btn btn-custom shadow dropdown-toggle" type="button" data-toggle="dropdown">Topics</button>
-					<div class="dropdown-menu shadow">
-						<a class="dropdown-item" onclick="displayArticles('gen')">General</a>
-						<a class="dropdown-item" onclick="displayArticles('space')">Space</a>
-						<a class="dropdown-item" onclick="displayArticles('tech')">Technology</a>
-						<a class="dropdown-item" onclick="displayArticles('bio')">Biology</a>
-						<a class="dropdown-item" onclick="displayArticles('comp')">Computing</a>
-						<a class="dropdown-item" onclick="displayArticles('phys')">Physics</a>
+				<div class="container navbar navbar-dark navbar-custom shadow">
+					<p class="h5 m-0 text-white font-weight-bold user-select-none">Topics</p>
+					<button class="navbar-toggler" data-toggle="collapse" data-target="#topics_collapse">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="topics_collapse">
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item user-select-none"><a href="#" class="nav-link topic" id="General" onclick="displayArticles('General')" data-toggle="collapse" data-target="#topics_collapse">General</a></li>
+							<li class="nav-item user-select-none"><a href="#" class="nav-link topic" id="Space" onclick="displayArticles('Space')" data-toggle="collapse" data-target="#topics_collapse">Space</a></li>
+							<li class="nav-item user-select-none"><a href="#" class="nav-link topic" id="Technology" onclick="displayArticles('Technology')" data-toggle="collapse" data-target="#topics_collapse">Technology</a></li>
+							<li class="nav-item user-select-none"><a href="#" class="nav-link topic" id="Biology" onclick="displayArticles('Biology')" data-toggle="collapse" data-target="#topics_collapse">Biology</a></li>
+							<li class="nav-item user-select-none"><a href="#" class="nav-link topic" id="Computing" onclick="displayArticles('Computing')" data-toggle="collapse" data-target="#topics_collapse">Computing</a></li>
+							<li class="nav-item user-select-none"><a href="#" class="nav-link topic" id="Physics" onclick="displayArticles('Physics')" data-toggle="collapse" data-target="#topics_collapse">Physics</a></li>
+						</ul>
 					</div>
 				</div>
 				<ul class="list-group list-group-flush">
-					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
-					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
-					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
-					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
-					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
-					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
-					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
-					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
-					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
-					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
-					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
-					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
-					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
-					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
-					<li class="list-group-item list-group-item-action shadow article"><a href="" target="_blank"></a><p class="m-0"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><img class="img-thumbnail img-fluid rounded float-right" src="favicon-32x32.png" alt=""><a href="" class="text-break stretched-link" target="_blank"></a><p class="mt-1 small"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><img class="img-thumbnail img-fluid rounded float-right" src="favicon-32x32.png" alt=""><a href="" class="text-break stretched-link" target="_blank"></a><p class="mt-1 small"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><img class="img-thumbnail img-fluid rounded float-right" src="favicon-32x32.png" alt=""><a href="" class="text-break stretched-link" target="_blank"></a><p class="mt-1 small"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><img class="img-thumbnail img-fluid rounded float-right" src="favicon-32x32.png" alt=""><a href="" class="text-break stretched-link" target="_blank"></a><p class="mt-1 small"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><img class="img-thumbnail img-fluid rounded float-right" src="favicon-32x32.png" alt=""><a href="" class="text-break stretched-link" target="_blank"></a><p class="mt-1 small"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><img class="img-thumbnail img-fluid rounded float-right" src="favicon-32x32.png" alt=""><a href="" class="text-break stretched-link" target="_blank"></a><p class="mt-1 small"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><img class="img-thumbnail img-fluid rounded float-right" src="favicon-32x32.png" alt=""><a href="" class="text-break stretched-link" target="_blank"></a><p class="mt-1 small"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><img class="img-thumbnail img-fluid rounded float-right" src="favicon-32x32.png" alt=""><a href="" class="text-break stretched-link" target="_blank"></a><p class="mt-1 small"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><img class="img-thumbnail img-fluid rounded float-right" src="favicon-32x32.png" alt=""><a href="" class="text-break stretched-link" target="_blank"></a><p class="mt-1 small"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><img class="img-thumbnail img-fluid rounded float-right" src="favicon-32x32.png" alt=""><a href="" class="text-break stretched-link" target="_blank"></a><p class="mt-1 small"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><img class="img-thumbnail img-fluid rounded float-right" src="favicon-32x32.png" alt=""><a href="" class="text-break stretched-link" target="_blank"></a><p class="mt-1 small"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><img class="img-thumbnail img-fluid rounded float-right" src="favicon-32x32.png" alt=""><a href="" class="text-break stretched-link" target="_blank"></a><p class="mt-1 small"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><img class="img-thumbnail img-fluid rounded float-right" src="favicon-32x32.png" alt=""><a href="" class="text-break stretched-link" target="_blank"></a><p class="mt-1 small"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><img class="img-thumbnail img-fluid rounded float-right" src="favicon-32x32.png" alt=""><a href="" class="text-break stretched-link" target="_blank"></a><p class="mt-1 small"></p></li>
+					<li class="list-group-item list-group-item-action shadow article"><img class="img-thumbnail img-fluid rounded float-right" src="favicon-32x32.png" alt=""><a href="" class="text-break stretched-link" target="_blank"></a><p class="mt-1 small"></p></li>
 				</ul>
 			</div>
 		</main>

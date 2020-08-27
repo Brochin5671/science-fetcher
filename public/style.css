@@ -15,28 +15,6 @@ body{
 	font-size: 0.8em;
 }
 
-<!-- Article List -->
-
-.btn{
-	background-color: none;
-}
-
-.btn-custom{
-	background-color: #640075;
-}
-
-.btn-custom:hover, .btn-custom:not(:disabled):not(.disabled).active, .btn-custom:not(:disabled):not(.disabled):active, .show>.btn-custom.dropdown-toggle{
-	background-color: #4e005b;
-}
-
-.btn-custom, .btn-custom:hover, .btn-custom:not(:disabled):not(.disabled).active, .btn-custom:not(:disabled):not(.disabled):active, .show>.btn-custom.dropdown-toggle{
-	color: white;
-}
-
-.dropdown-item:hover{
-	cursor: pointer;
-}
-
 .article:hover{
 	transition: background-color 0.4s ease-out;
 }
