@@ -46,7 +46,7 @@ function createTopicMap(){
 	topicMap = new Map();
 	topicMap.set('General','CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen');
 	topicMap.set('Space','CAAqIggKIhxDQkFTRHdvSkwyMHZNREU0TXpOM0VnSmxiaWdBUAE?hl=en-CA&gl=CA&ceid=CA%3Aen');
-	topicMap.set('Technology','CAAqKggKIiRDQkFTRlFvSUwyMHZNRGRqTVhZU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen');
+	topicMap.set('Technology','CAAqKggKIiRDQkFTRlFvSUwyMHZNRGRqTVhZU0JXVnVMVWRDR2dKRFFTZ0FQAQ/sections/CAQiZkNCQVNSZ29JTDIwdk1EZGpNWFlTQldWdUxVZENHZ0pEUVNJT0NBUWFDZ29JTDIwdk1EVXdhemdxSHdvZENobE5UMEpKVEVWZlVFaFBUa1ZmVTBWRFZFbFBUbDlPUVUxRklBRW9BQSouCAAqKggKIiRDQkFTRlFvSUwyMHZNRGRqTVhZU0JXVnVMVWRDR2dKRFFTZ0FQAVAB?hl=en-CA&gl=CA&ceid=CA%3Aen');
 	topicMap.set('Biology','CAAqJQgKIh9DQkFTRVFvSUwyMHZNREUxTkRBU0JXVnVMVWRDS0FBUAE?hl=en-CA&gl=CA&ceid=CA%3Aen');
 	topicMap.set('Computing','CAAqIQgKIhtDQkFTRGdvSUwyMHZNREZzY0hNU0FtVnVLQUFQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen');
 	topicMap.set('Physics','CAAqIQgKIhtDQkFTRGdvSUwyMHZNRFZ4YW5RU0FtVnVLQUFQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen');

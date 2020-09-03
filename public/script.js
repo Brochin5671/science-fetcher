@@ -3,7 +3,7 @@ async function fetchArticles(topic){
 	const options = {
 		method: 'POST',
 		headers:{
-			'Content-Type': 'text/plain',
+			'Content-Type': 'text/plain'
 		},
 		body: topic
 	};
@@ -16,20 +16,15 @@ async function fetchArticles(topic){
 function displayArticles(topic){
 	
 	// Get list element and display loading text
-	let articleList = document.querySelectorAll('.article');
+	let articleList = document.querySelectorAll('.media');
 	for(let i=0;i<articleList.length;i++){
-		// Add spinner
-		if(articleList[i].querySelector('span') === null){
-			let spinner = document.createElement('span');
-			spinner.className = 'spinner-border spinner-border-sm ml-auto';
-			articleList[i].insertBefore(spinner,articleList[i].querySelector('a'));
-		}
 		// Disable link and display loading labels
 		articleList[i].querySelector('a').removeAttribute('href');
 		articleList[i].querySelector('a').innerHTML = ' Fetching...';
 		articleList[i].querySelector('p').innerHTML = '';
 		articleList[i].querySelector('img').src = 'favicon-32x32.png';
 		articleList[i].querySelector('img').alt = "Fetching image";
+		articleList[i].querySelector('img').className = 'd-flex spinner-grow m-2';
 	}
 	
 	// Store session item for button selected
@@ -44,6 +39,7 @@ function displayArticles(topic){
 	let btnList = document.querySelectorAll('.topic');
 	for(let i=0;i<btnList.length;i++){
 		btnList[i].className = 'nav-link topic disabled';
+		btnList[i].setAttribute('tabindex',-1);
 	}
 	document.querySelector('#'+topic).className += ' active';
 	
@@ -52,8 +48,8 @@ function displayArticles(topic){
 	// Update links, titles, and dates once async function has finished
 	data.then((data) => {
 		for(let i=0;i<articleList.length;i++){
-			// Update links, titles, site & dates, and images with data, and remove spinner
-			articleList[i].querySelector('.spinner-border').remove();
+			// Remove spinner, and update links, titles, sites & dates, images with data
+			articleList[i].querySelector('img').className = 'd-flex img-thumbnail m-2';
 			try{
 				articleList[i].querySelector('a').href = 'https://news.google.com'+data[i].url;
 				articleList[i].querySelector('a').innerHTML = data[i].title;
@@ -65,21 +61,23 @@ function displayArticles(topic){
 				articleList[i].querySelector('img').alt = "No image found";
 			}
 		}
-		// Enable buttons
+		// Enable buttons and keyboard focusing
 		for(let i=0;i<btnList.length;i++){
 			btnList[i].className = 'nav-link topic';
+			btnList[i].removeAttribute('tabindex');
 		}
 		document.querySelector('#'+topic).className += ' active';
 	}, (failure) => { // Return connection error message if promise was rejected
 		for(let i=0;i<articleList.length;i++){
 			// Remove spinner and add failure text
-			articleList[i].querySelector('.spinner-border').remove();
+			articleList[i].querySelector('img').className = 'd-flex img-thumbnail m-2';
 			articleList[i].querySelector('a').innerHTML = 'Failed to fetch article - Connection Error (try again)';
 			articleList[i].querySelector('img').alt = "No image found";
 		}
-		// Enable buttons
+		// Enable buttons and keyboard focusing
 		for(let i=0;i<btnList.length;i++){
 			btnList[i].className = 'nav-link topic';
+			btnList[i].removeAttribute('tabindex');
 		}
 		document.querySelector('#'+topic).className += ' active';
 	});

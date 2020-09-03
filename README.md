@@ -7,6 +7,19 @@ Science Fetcher is a webapp able to fetch articles on the latest science news fr
 
 ## Changelog
 
+### 2.2.0 (2020-09-02)
+* Added badge icons to topics
+* Improved articles: uses Bootstrap's media objects, image are on the left, and new spinner
+* Improved footer: darker background, added icons, added technologies section, and removed navigation section
+* Improved performance and security by adding noreferrer to external links
+* Improved performance by preloading scripts and styles
+* Improved contact page by centering text
+* Improved about page's "How?" paragraphs
+* Improved on-page anchors on about page in stylesheet
+* Fixed bug allowing topics to be selected with keyboard focusing
+* Fixed technology topic issue by using different link
+* Fixed bug that caused inability to leave 404 page when using about and contact links
+
 ### 2.1.1 (2020-08-27)
 * Added warning badge for technology topic yielding less results than expected
 * Changed contact and 404 card to not stretch to the entire page

@@ -15,46 +15,46 @@ body{
 	font-size: 0.8em;
 }
 
-.article:hover{
-	transition: background-color 0.4s ease-out;
+.media{
+	transition: background-color 0.3s;
 }
 
-.list-group-item a{
+.media:hover{
+	background-color: #EEEEEE;
+}
+
+.media a{
 	color: black;
 	transition: opacity 0.4s;
 }
 
-.list-group-item a:hover{
-	opacity: 0.7;
+.media a:hover{
+	color: black;
+	opacity: 0.6;
 }
 
 .footer-bg{
-	background-color: #640075;
+	background-color: #4e005b;
 }
 
-.footer-add-link{
-	color: white;
-}
-
-.footer-add-link:hover{
+.logo{
 	color: white;
 	opacity: 0.5;
+	transition: opacity 0.2s;
 }
 
-.footer-link{
+.logo:hover{
 	color: white;
-	opacity: 0.5;
+	opacity: 1;
 }
 
-.footer-link:hover{
-	color: white;
-	opacity: 0.7;
-}
-
-.on-page-anchor{
-	margin: -70px 0px 70px 0px;
+.on-page-anchor:before {
+    display: block;
+    content: "";
+    height: 50px;
+    margin: -50px 0 0;
 }
 
 .contact{
-	margin-top: -80px;	
+	margin-top: -80px;
 }

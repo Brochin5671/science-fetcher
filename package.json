@@ -1,7 +1,7 @@
 {
   "name": "science-fetcher",
-  "version": "2.1.1",
-  "description": "Science Fetcher is able to fetch the latest science news to display with link provided.",
+  "version": "2.2.0",
+  "description": "Science Fetcher is able to fetch the latest science news.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
