@@ -10,7 +10,6 @@
 		<meta property="og:type" content="website">
 		<meta property="og:title" content="About · Science Fetcher">
 		<meta property="og:description" content="Science Fetcher's about page, detailing the inner-workings!">
-		<meta property="og:image" content="apple-touch-icon.png?v=3">
 		<meta property="og:url" content="https://science-fetcher.herokuapp.com/about">
 		<meta name="twitter:card" content="summary_large_image">
 		<meta property="og:site_name" content="Science Fetcher">
@@ -36,7 +35,7 @@
 	<body>
 		<header class="container-fluid navbar navbar-expand-sm fixed-top navbar-dark navbar-custom shadow">
 			<a class="navbar-brand font-weight-bold user-select-none" href="/">Science Fetcher</a>
-			<button class="navbar-toggler border-dark" data-toggle="collapse" data-target="#target_collapse">
+			<button class="navbar-toggler" data-toggle="collapse" data-target="#target_collapse">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="target_collapse">
@@ -51,7 +50,7 @@
 			<div class="container">
 				<nav class="navbar navbar-expand-sm navbar-dark navbar-custom shadow rounded-bottom">
 					<p class="h5 m-0 mr-3 text-white font-weight-bold user-select-none">Content</p>
-					<button class="navbar-toggler border-dark" data-toggle="collapse" data-target="#nav_collapse">
+					<button class="navbar-toggler" data-toggle="collapse" data-target="#nav_collapse">
 						<i class="fas fa-sort"></i>
 					</button>
 					<div class="collapse navbar-collapse" id="nav_collapse">
@@ -89,6 +88,12 @@
 						<div class="col card mb-4 shadow-sm">
 							<div class="card-body">
 								<h2 class="card-title font-weight-bold mb-5">Changelog</h2>
+								<h3 class="h4 card-subtitle font-weight-bold mb-3">2.2.1 (2020-09-1x)</h3>
+								<ul>
+									<li>Changed toggler-icon border colors to be light</li>
+									<li>Removed og:image tag</li>
+									<li class="mb-5">Fixed formatting issue in changelog</li>
+								</ul>
 								<h3 class="h4 card-subtitle font-weight-bold mb-3">2.2.0 (2020-09-02)</h3>
 								<ul>
 									<li>Added badge icons to topics</li>
@@ -102,14 +107,14 @@
 									<li>Improved on-page anchors on about page in stylesheet</li>
 									<li>Fixed bug allowing topics to be selected with keyboard focusing</li>
 									<li>Fixed technology topic issue by using different link</li>
-									<li>Fixed bug that caused inability to leave 404 page when using about and contact links</li>
+									<li class="mb-5">Fixed bug that caused inability to leave 404 page when using about and contact links</li>
 								</ul>
 								<h3 class="h4 card-subtitle font-weight-bold mb-3">2.1.1 (2020-08-27)</h3>
 								<ul>
 									<li>Added warning badge for technology topic yielding less results than expected</li>
 									<li>Changed contact and 404 card to not stretch to the entire page</li>
 									<li>Changed alt attribute to not be empty on load</li>
-									<li>Fixed exploit involving sending unwanted URLs to backend by adding escape code to URL and moving topic map to backend</li>
+									<li class="mb-5">Fixed exploit involving sending unwanted URLs to backend by adding escape code to URL and moving topic map to backend</li>
 								</ul>
 								<h3 class="h4 card-subtitle font-weight-bold mb-3">2.1.0 (2020-08-26)</h3>
 								<ul>
@@ -125,7 +130,7 @@
 									<li>Improved error handling for missing data (connection error)</li>
 									<li>Improved script: changed values for readability, cleaner display labels, and session storage improvement</li>
 									<li>Fixed open graph title for home page</li>
-									<li>Removed some obsolete styles in stylesheet</li>
+									<li class="mb-5">Removed some obsolete styles in stylesheet</li>
 								</ul>
 								<h3 class="h4 card-subtitle font-weight-bold mb-3">2.0.1 (2020-08-23)</h3>
 								<ul>
@@ -133,7 +138,7 @@
 									<li>Added error handling for connection error and missing data</li>
 									<li>Added more SEOs: removed X-Powered-By header and heading tag improvements</li>
 									<li>Improved favicons with compressed images, site names, and theme colors</li>
-									<li>Fixed security issue allowing access to all root files by allowing access to files only in public directory</li>
+									<li class="mb-5">Fixed security issue allowing access to all root files by allowing access to files only in public directory</li>
 								</ul>
 								<h3 class="h4 card-subtitle font-weight-bold mb-3">2.0.0 (2020-08-21)</h3>
 								<ul>

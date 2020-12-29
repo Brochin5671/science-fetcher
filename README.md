@@ -7,8 +7,14 @@ Science Fetcher is a webapp able to fetch articles on the latest science news fr
 
 ## Changelog
 
+### 2.2.1 (2020-12-29)
+* Changed toggler-icon border colors to be light
+* Removed og:image tag
+* Fixed formatting issue in changelog
+
 ### 2.2.0 (2020-09-02)
 * Added badge icons to topics
+* Changed toggler icons for topics and about page contents navigation bars
 * Improved articles: uses Bootstrap's media objects, image are on the left, and new spinner
 * Improved footer: darker background, added icons, added technologies section, and removed navigation section
 * Improved performance and security by adding noreferrer to external links
