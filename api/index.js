@@ -22,7 +22,7 @@ if (port == process.env.PORT) {
   });
 }
 
-// Serves static files without .html extension
+// Serves static files without .html extension (done by Vercel in prod)
 if (port === 3000) app.use(express.static('public', { extensions: ['html'] }));
 
 // Listen to port
