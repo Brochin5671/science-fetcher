@@ -12,15 +12,15 @@
   ],
   "routes": [
     { 
-      "source": "/api/(.*)",
+      "src": "/api/(.*)",
       "destination": "/api/index.js"
     },
     { 
-      "source": "/",
+      "src": "/",
       "destination": "/public/index.html"
     },
     { 
-      "source": "/(.+)",
+      "src": "/(.+)",
       "destination": "/public/$1"
     }
   ]
