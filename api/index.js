@@ -31,6 +31,11 @@ app.listen(port, () => console.log(`Now running on ${port}`));
 // Use string parser with 1mb limit
 app.use(express.text({ limit: '1mb' }));
 
+// Force Vercel to serve index.html since Express was serving public seperately
+app.get('/', (_, res) => {
+  res.sendFile('index.html', { root: path.join(__dirname, 'public') });
+});
+
 // Get post request from /data, get ID, scrape information with provided ID, and return article data
 app.post('/data', (req, res) => {
   const id = getID(req.body);
