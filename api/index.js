@@ -133,6 +133,7 @@ app.get('*', (req, res) => {
   res.status(404).sendFile(__dirname + '/404-page.html');
 });
 
+// Log server errors
 app.on('error', (error) => console.error('Server error', error));
 
 module.exports = app;
