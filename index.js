@@ -12,9 +12,6 @@ const cheerio = require('cheerio');
 app.use(compression());
 app.disable('x-powered-by');
 
-// Serves static files without .html extension (Vercel serves these otherwise)
-app.use(express.static('public', { extensions: ['html'] }));
-
 // Listen to port
 app.listen(port, () => console.log(`Now running on ${port}`));
 
