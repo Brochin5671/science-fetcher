@@ -20,10 +20,10 @@ if (port == process.env.PORT) {
     if (req.secure) next();
     else res.redirect(301, 'https://' + req.headers.host + req.url);
   });
+} else {
+  // Serves static files without .html extension (Vercel serves these otherwise)
+  app.use(express.static('public', { extensions: ['html'] }));
 }
-
-// Serves static files without .html extension
-app.use(express.static('public', { extensions: ['html'] }));
 
 // Listen to port
 app.listen(port, () => console.log(`Now running on ${port}`));
@@ -132,5 +132,7 @@ function requestURL(id) {
 app.get('*', (req, res) => {
   res.status(404).sendFile(__dirname + '/404-page.html');
 });
+
+app.on('error', (error) => console.error('Server error', error));
 
 module.exports = app;
