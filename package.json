@@ -1,11 +1,11 @@
 {
   "name": "science-fetcher",
-  "version": "2.2.0",
+  "version": "2.2.2",
   "description": "Science Fetcher is able to fetch the latest science news.",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "nodemon app.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "engines": {
     "node": "12.16.0"
@@ -16,7 +16,7 @@
   },
   "keywords": [
     "node",
-    "heroku",
+    "vercel",
     "science",
     "news"
   ],
