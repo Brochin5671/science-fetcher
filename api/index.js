@@ -26,13 +26,13 @@ if (port == process.env.PORT) {
 app.use(express.static('public', { extensions: ['html'] }));
 
 // Listen to port
-app.listen(port);
+app.listen(port, () => console.log('Now listening...'));
 
 // Use string parser with 1mb limit
 app.use(express.text({ limit: '1mb' }));
 
 // Get post request from /data, get ID, scrape information with provided ID, and return article data
-app.post('/data', (req, res) => {
+app.post('data', (req, res) => {
   const id = getID(req.body);
   requestURL(id).then(
     (data) => {
