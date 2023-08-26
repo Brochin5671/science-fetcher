@@ -23,6 +23,7 @@ if (port == process.env.PORT) {
 } else {
   // Serves static files without .html extension (Vercel serves these otherwise)
   app.use(express.static('public', { extensions: ['html'] }));
+  console.log('served locally');
 }
 
 // Listen to port
