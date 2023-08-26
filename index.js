@@ -12,19 +12,8 @@ const cheerio = require('cheerio');
 app.use(compression());
 app.disable('x-powered-by');
 
-// Redirect to secure if request is not secure and not localhost
-if (port == process.env.PORT) {
-  // Enable reverse proxy support
-  app.enable('trust proxy');
-  app.use((req, res, next) => {
-    if (req.secure) next();
-    else res.redirect(301, 'https://' + req.headers.host + req.url);
-  });
-} else {
-  // Serves static files without .html extension (Vercel serves these otherwise)
-  app.use(express.static('public', { extensions: ['html'] }));
-  console.log('served locally');
-}
+// Serves static files without .html extension (Vercel serves these otherwise)
+app.use(express.static('public', { extensions: ['html'] }));
 
 // Listen to port
 app.listen(port, () => console.log(`Now running on ${port}`));
