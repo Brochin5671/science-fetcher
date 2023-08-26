@@ -15,6 +15,9 @@ app.disable('x-powered-by');
 // Listen to port
 app.listen(port, () => console.log(`Now running on ${port}`));
 
+// Serves static files without .html extension
+app.use(express.static('public', { extensions: ['html'] }));
+
 // Use string parser with 1mb limit
 app.use(express.text({ limit: '1mb' }));
 
