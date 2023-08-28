@@ -4,8 +4,9 @@ const compression = require('compression');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Require puppeteer
-const puppeteer = require('puppeteer');
+// Require chromium and playwright
+const chromium = require('chrome-aws-lambda');
+const playwright = require('playwright-core');
 
 // Compress all responses and remove x-powered-by header
 app.use(compression());
@@ -91,20 +92,13 @@ async function getProperty(element, property) {
 // Gets article data by requesting URL with given ID, scrapes data, and returns the list as a promise
 function requestURL(id) {
   return new Promise(async function (resolve, reject) {
-    // Launch puppeteer and get content
-    const browser = await puppeteer.launch({ headless: 'new' });
-    const page = await browser.newPage();
-
-    // Abort page making requests to images and stylesheets to reduce load time
-    await page.setRequestInterception(true);
-    page.on('request', (request) => {
-      if (
-        request.resourceType() === 'image' ||
-        request.resourceType() === 'stylesheet'
-      )
-        request.abort();
-      else request.continue();
+    // Launch playwright
+    const browser = await playwright.chromium.launch({
+      args: [...chromium.args, '--font-render-hinting=none'],
+      headless: true,
     });
+    const context = await browser.newContext();
+    const page = await context.newPage();
 
     // Go to page
     const url = 'https://news.google.com/topics/' + id;
