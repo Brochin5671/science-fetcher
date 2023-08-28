@@ -4,7 +4,7 @@
   "description": "Science Fetcher is able to fetch the latest science news.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "npx playwright install && node index.js",
     "dev": "nodemon index.js"
   },
   "engines": {
