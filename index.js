@@ -20,6 +20,7 @@ app.use(express.static(__dirname + '/public', { extensions: ['html'] }));
 
 // Get post request from /data, get ID, scrape information with provided ID, and return article data
 app.get('/data', (req, res) => {
+  res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   const id = getID(req.query.topic);
   if (!id) {
     res.status(400).json({ error: 'Bad request' });
