@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./api/index.js",
-    "dev": "nodemon ./api/index.js",
-    "build": "npm ci && npx playwright-core install"
+    "dev": "nodemon ./api/index.js"
   },
   "engines": {
     "node": "18.x"
@@ -30,10 +29,10 @@
   "dependencies": {
     "chrome-aws-lambda": "^10.1.0",
     "compression": "^1.7.4",
-    "express": "^4.17.3",
-    "playwright-core": "^1.37.1"
+    "express": "^4.17.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "puppeteer": "^21.1.1"
   }
 }
