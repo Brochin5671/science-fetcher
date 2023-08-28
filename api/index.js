@@ -98,6 +98,7 @@ function requestURL(id) {
   return new Promise(async function (resolve, reject) {
     // Launch playwright
     const browser = await playwright.chromium.launch({
+      executablePath: (await chromium.executablePath) ?? undefined,
       args: [...chromium.args, '--font-render-hinting=none'],
       headless: true,
     });
