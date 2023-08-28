@@ -1,12 +1,11 @@
 // Require express and compression, and setup app and port
 const express = require('express');
 const compression = require('compression');
-var app = express();
-var port = process.env.PORT || 3000;
+const app = express();
+const port = process.env.PORT || 3000;
 
-// Require request and cheerio
-const request = require('request');
-const cheerio = require('cheerio');
+// Require puppeteer
+const puppeteer = require('puppeteer');
 
 // Compress all responses and remove x-powered-by header
 app.use(compression());
@@ -18,12 +17,15 @@ app.listen(port, () => console.log(`Now running on ${port}`));
 // Serves static files without .html extension
 app.use(express.static(__dirname + '/public', { extensions: ['html'] }));
 
-// Use string parser with 1mb limit
-app.use(express.text({ limit: '1mb' }));
-
 // Get post request from /data, get ID, scrape information with provided ID, and return article data
-app.post('/data', (req, res) => {
-  const id = getID(req.body);
+app.get('/data', (req, res) => {
+  const id = getID(req.query.topic);
+  if (!id) {
+    res.status(400).json({ error: 'Bad request' });
+    return;
+  }
+
+  // Run scraper
   requestURL(id).then(
     (data) => {
       res.json(data);
@@ -31,6 +33,7 @@ app.post('/data', (req, res) => {
     (failure) => {
       // Log any failures
       console.log(failure);
+      res.status(500).json({ error: 'Server error' });
     }
   );
 });
@@ -40,27 +43,27 @@ function createTopicMap() {
   topicMap = new Map();
   topicMap.set(
     'General',
-    'CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKRFFTZ0FQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
+    'CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKRFFTZ0FQAQ'
   );
   topicMap.set(
     'Space',
-    'CAAqIggKIhxDQkFTRHdvSkwyMHZNREU0TXpOM0VnSmxiaWdBUAE?hl=en-CA&gl=CA&ceid=CA%3Aen'
+    'CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKRFFTZ0FQAQ/sections/CAQiTENCQVNNd29JTDIwdk1EWnRjVGNTQldWdUxVZENHZ0pEUVNJUENBUWFDd29KTDIwdk1ERTRNek4zS2dzU0NTOXRMekF4T0RNemR5Z0EqLggAKioICiIkQ0JBU0ZRb0lMMjB2TURadGNUY1NCV1Z1TFVkQ0dnSkRRU2dBUAFQAQ'
   );
   topicMap.set(
     'Technology',
-    'CAAqKggKIiRDQkFTRlFvSUwyMHZNRGRqTVhZU0JXVnVMVWRDR2dKRFFTZ0FQAQ/sections/CAQiZkNCQVNSZ29JTDIwdk1EZGpNWFlTQldWdUxVZENHZ0pEUVNJT0NBUWFDZ29JTDIwdk1EVXdhemdxSHdvZENobE5UMEpKVEVWZlVFaFBUa1ZmVTBWRFZFbFBUbDlPUVUxRklBRW9BQSouCAAqKggKIiRDQkFTRlFvSUwyMHZNRGRqTVhZU0JXVnVMVWRDR2dKRFFTZ0FQAVAB?hl=en-CA&gl=CA&ceid=CA%3Aen'
+    'CAAqKggKIiRDQkFTRlFvSUwyMHZNRGRqTVhZU0JXVnVMVWRDR2dKRFFTZ0FQAQ'
   );
   topicMap.set(
     'Biology',
-    'CAAqJQgKIh9DQkFTRVFvSUwyMHZNREUxTkRBU0JXVnVMVWRDS0FBUAE?hl=en-CA&gl=CA&ceid=CA%3Aen'
+    'CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKRFFTZ0FQAQ/sections/CAQiSkNCQVNNUW9JTDIwdk1EWnRjVGNTQldWdUxVZENHZ0pEUVNJT0NBUWFDZ29JTDIwdk1ETTJYeklxQ2hJSUwyMHZNRE0yWHpJb0FBKi4IACoqCAoiJENCQVNGUW9JTDIwdk1EWnRjVGNTQldWdUxVZENHZ0pEUVNnQVABUAE'
   );
   topicMap.set(
     'Computing',
-    'CAAqIQgKIhtDQkFTRGdvSUwyMHZNREZzY0hNU0FtVnVLQUFQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
+    'CAAqJQgKIh9DQkFTRVFvSUwyMHZNREZzY0hNU0JXVnVMVWRDS0FBUAE'
   );
   topicMap.set(
     'Physics',
-    'CAAqIQgKIhtDQkFTRGdvSUwyMHZNRFZ4YW5RU0FtVnVLQUFQAQ?hl=en-CA&gl=CA&ceid=CA%3Aen'
+    'CAAqKggKIiRDQkFTRlFvSUwyMHZNRFp0Y1RjU0JXVnVMVWRDR2dKRFFTZ0FQAQ/sections/CAQiSkNCQVNNUW9JTDIwdk1EWnRjVGNTQldWdUxVZENHZ0pEUVNJT0NBUWFDZ29JTDIwdk1EVnhhblFxQ2hJSUwyMHZNRFZ4YW5Rb0FBKi4IACoqCAoiJENCQVNGUW9JTDIwdk1EWnRjVGNTQldWdUxVZENHZ0pEUVNnQVABUAE'
   );
 }
 createTopicMap();
@@ -71,50 +74,88 @@ function getID(topic) {
 }
 
 // Declare article object
-function Article() {
-  this.title = '';
-  this.url = '';
-  this.date = '';
-  this.site = '';
-  this.image = '';
+class Article {
+  constructor() {
+    this.title = '';
+    this.url = '';
+    this.date = '';
+    this.image = '';
+  }
+}
+
+// Helper for getting ElementHandle property
+async function getProperty(element, property) {
+  return (await element?.getProperty(property))?.jsonValue();
 }
 
 // Gets article data by requesting URL with given ID, scrapes data, and returns the list as a promise
 function requestURL(id) {
-  return new Promise(function (resolve, reject) {
-    request(
-      'https://news.google.com/topics/' + id + '$3C',
-      (error, response, body) => {
-        // Escape code $3C prevents any unwanted links from being added
-        // Check for errors after requesting url
-        if (!error && response.statusCode == 200) {
-          // Search n items for title, link, date, site, and image, and store it in an object which is pushed to a list
-          const $ = cheerio.load(body);
-          let i = 0;
-          let n = 14;
-          var data = [];
-          $('#i9-panel > div > c-wiz > div').each(function () {
-            if (i > n) return false;
-            let article = new Article();
-            article.title = $(this)
-              .find('c-wiz > c-wiz > div > article > h4')
-              .text();
-            console.log(article);
-            article.url = $(this).find('a.DY5T1d').attr('href');
-            article.date = $(this).find('time').text();
-            article.site = $(this).find('a.wEwyrc.AVN2gc.uQIVzc.Sksgp').text();
-            const img = $(this).find('img').attr('srcset').split(' '); // If there are two links, splits them
-            article.image = img[0]; // Use the first link
-            data.push(article);
-            i++;
-          });
-          // Send list (success)
-          resolve(data);
-        } else {
-          reject(error || response.statusCode); // Send error (failure)
-        }
-      }
-    );
+  return new Promise(async function (resolve, reject) {
+    // Launch puppeteer and get content
+    const browser = await puppeteer.launch({ headless: 'new' });
+    const page = await browser.newPage();
+
+    // Abort page making requests to images and stylesheets to reduce load time
+    await page.setRequestInterception(true);
+    page.on('request', (request) => {
+      if (
+        request.resourceType() === 'image' ||
+        request.resourceType() === 'stylesheet'
+      )
+        request.abort();
+      else request.continue();
+    });
+
+    // Go to page
+    const url = 'https://news.google.com/topics/' + id;
+    const response = await page.goto(url, {
+      waitUntil: 'domcontentloaded',
+    });
+
+    // Reject if page not found
+    if (response.status() !== 200) {
+      await browser.close();
+      reject(`${url} responded with a ${response.status()}`);
+      return;
+    }
+
+    // Load and extract data
+    const elements = await page.$$('article');
+    const data = [];
+    const n = 14;
+    let i = 0;
+    for (const element of elements) {
+      if (i > n) break;
+
+      // Skip article if no major images
+      const image = await getProperty(
+        await element.$('figure > img'),
+        'srcset'
+      );
+      if (!image) continue;
+      let article = new Article();
+      article.title = await getProperty(await element.$('h4'), 'innerText');
+      article.url = await getProperty(await element.$('a'), 'href');
+      article.date = await getProperty(await element.$('time'), 'innerText');
+
+      // If no site name, use site logo
+      const site =
+        (await getProperty(
+          await element.$('div > div > div > div > div > div > div'),
+          'innerText'
+        )) ??
+        (await getProperty(
+          await element.$('div > div > div > div'),
+          'innerText'
+        ));
+      article.site = site;
+      const img = image.split(' '); // If there are two links, splits them
+      article.image = img[0]; // Use the first link
+      data.push(article);
+      i++;
+    }
+    await browser.close();
+    resolve(data);
   });
 }
 
@@ -124,6 +165,6 @@ app.get('*', (req, res) => {
 });
 
 // Log server errors
-app.on('error', (error) => console.error('Server error', error));
+app.on('error', (error) => console.error('Server error: ', error));
 
 module.exports = app;
