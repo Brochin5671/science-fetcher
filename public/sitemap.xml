@@ -8,17 +8,17 @@
 
 
 <url>
-  <loc>https://science-fetcher.vercel.app/</loc>
+  <loc>https://science-fetcher.fly.dev/</loc>
   <lastmod>2020-08-10T01:48:52+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://science-fetcher.vercel.app/about</loc>
+  <loc>https://science-fetcher.fly.dev/about</loc>
   <lastmod>2020-08-10T01:48:52+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://science-fetcher.vercel.app/contact</loc>
+  <loc>https://science-fetcher.fly.dev/contact</loc>
   <lastmod>2020-08-10T01:48:52+00:00</lastmod>
   <priority>0.80</priority>
 </url>

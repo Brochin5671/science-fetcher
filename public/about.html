@@ -10,7 +10,7 @@
 		<meta property="og:type" content="website">
 		<meta property="og:title" content="About · Science Fetcher">
 		<meta property="og:description" content="Science Fetcher's about page, detailing the inner-workings!">
-		<meta property="og:url" content="https://science-fetcher.vercel.app/about">
+		<meta property="og:url" content="https://science-fetcher.fly.dev/about">
 		<meta name="twitter:card" content="summary_large_image">
 		<meta property="og:site_name" content="Science Fetcher">
 		<meta name="twitter:image:alt" content="Science Fetcher Logo">
@@ -28,7 +28,7 @@
 		<link rel="preload" as="style" href="style.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="style.css">
-		<link rel="canonical" href="https://science-fetcher.vercel.app/about">
+		<link rel="canonical" href="https://science-fetcher.fly.dev/about">
 		<link rel="preconnect" href="https://kit-free.fontawesome.com">
 		<script src="https://kit.fontawesome.com/aa022a94b3.js" crossorigin="anonymous"></script>
 	</head>
@@ -68,7 +68,7 @@
 							<div class="card-body">
 								<h1 class="h2 card-title font-weight-bold">Why?</h1>
 								<em class="card-text small">This web-app holds a special place for me as it marks the beginning of my journey into development, dating all the way back to 2020. I've been lightly maintaining this, aiming to retain the majority of the original codebase (other than having to change the scraper). This approach allows me to maintain a tangible connection to where I started and serves as a point of comparison to measure how much progress I've made since those early days.</em>
-								<p class="card-text">This web-app was created to fetch articles on the latest science news from Google News to aggregate science news in one place. Even though the web-app scrapes content from Google News, I wanted the articles to be provided in an alternative and more digestible manner. This is intended to be a demonstration of my full-stack development skills, being able to develop a frontend with the Bootstrap 4 framework, and backend with Express.js powered by Vercel.</p>
+								<p class="card-text">This web-app was created to fetch articles on the latest science news from Google News to aggregate science news in one place. Even though the web-app scrapes content from Google News, I wanted the articles to be provided in an alternative and more digestible manner. This is intended to be a demonstration of my full-stack development skills, being able to develop a frontend with the Bootstrap 4 CSS framework, and backend with Express.js powered by Fly.io.</p>
 							</div>
 						</div>
 					</div>
@@ -80,7 +80,7 @@
 								<h2 class="h4 card-subtitle font-weight-bold mb-3">Frontend</h2>
 								<p class="card-text mb-4">The frontend was developed using HTML &amp; CSS with the Bootstrap 4 framework alongside JavaScript for functionality. When selecting a topic, the script sends a GET request with an ID to the backend to retrieve a list and displays it on the page. On load, the home page checks if the client is visiting the site for the first time and remembers what topic was selected last in the session to display articles of. Icons are used from Font Awesome's icon kit.</p>
 								<h2 class="h4 card-subtitle font-weight-bold mb-4">Backend</h2>
-								<p class="card-text">The backend was developed using the Node.js runtime environment with Vercel deploying the webapp. Express.js is used as the server framework with the Compression module serving all compressed static resources. When sending a GET request, the Playwright-core module is used on the backend to scrape content from the provided Google News URL, and send a list back to be displayed for the requested topic. Any unknown page renders a 404 HTML file to display to the user.</p>
+								<p class="card-text">The backend was developed using the Node.js runtime environment with Vercel deploying the webapp. Express.js is used as the server framework with the Compression module serving all compressed static resources. When sending a GET request, the Axios and Cheerio modules are used on the backend to scrape content from the provided Google News URL, and send a list back to be displayed for the requested topic. Any unknown page renders a 404 HTML file to display to the user.</p>
 							</div>
 						</div>
 					</div>
@@ -89,9 +89,9 @@
 						<div class="col card mb-4 shadow-sm">
 							<div class="card-body">
 								<h2 class="card-title font-weight-bold mb-5">Changelog</h2>
-								<h3 class="h4 card-subtitle font-weight-bold mb-3">2.2.2 (2023-08-27)</h3>
+								<h3 class="h4 card-subtitle font-weight-bold mb-3">2.2.2 (2023-09-03)</h3>
 								<ul>
-									<li>Moved app deployment to Vercel</li>
+									<li>Moved app deployment to Fly.io</li>
 									<li>Changed API call to correctly use GET instead of POST</li>
 									<li>Changed internal scraping logic</li>
 									<li>Updated some frontend scripting logic</li>
