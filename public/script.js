@@ -54,7 +54,9 @@ function displayArticles(topic) {
         img.className = 'd-flex img-thumbnail m-2';
         const aEle = articleList[i].querySelector('a');
         if (data?.[i]) {
-          aEle.href = data[i].url;
+          aEle.href = data[i].url
+            ? `https://news.google.com${data[i].url}`
+            : null;
           aEle.innerText = data[i].title;
           articleList[i].querySelector('p').innerText =
             data[i].site + ' - ' + data[i].date;
