@@ -121,8 +121,11 @@ function requestURL(id) {
 
         // If no site name, use site logo
         const site =
-          $(element).find('div > div > div > div > div > div > div').text() ??
-          $(element).find('div > div > div > div').text();
+          $(element)
+            .find('div > div > div > div > div > div > div')
+            .text()
+            .split('More')?.[0] ||
+          $(element).find('div > div > div > div').text().split('More')?.[0];
         article.site = site;
         const img = image.split(' '); // If there are two links, splits them
         article.image = img[0]; // Use the first link
