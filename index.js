@@ -116,7 +116,7 @@ function requestURL(id) {
         if (!image) continue;
         const article = new Article();
         article.title = $(element).find('h4').text();
-        article.url = $(element).find('a').attr('href');
+        article.url = $(element).find('a').attr('href')?.slice(1);
         article.date = $(element).find('time').text();
 
         // If no site name, use site logo
