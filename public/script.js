@@ -60,7 +60,7 @@ function displayArticles(topic) {
           aEle.innerText = data[i].title
           articleList[i].querySelector('p').innerText =
             data[i].site + ' - ' + data[i].date
-          img.src = `data:image/${data[i].imageType},${data[i].image}`
+          img.src = `data:${data[i].imageType},${data[i].image}`
           img.alt = data[i].title
         } else {
           // Return server error message if missing data
