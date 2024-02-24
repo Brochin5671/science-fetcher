@@ -112,12 +112,23 @@ function requestURL(id) {
         if (i > n) break
 
         // Skip article if no major images
-        const image = $(element).find('figure > img').attr('srcset')
+        const image = $(element).find('figure > img').attr('src')
         if (!image) continue
+
         const article = new Article()
         article.title = $(element).find('a').text()
         article.url = $(element).find('a').attr('href')?.slice(1)
         article.date = $(element).find('time').text()
+
+        // Get binary data for image
+        const { data: binData, headers } = await axios.get(
+          `https://news.google.com${image}`,
+          { maxBodyLength: Infinity, responseEncoding: 'binary' }
+        )
+        // Encode the binary data to Base64
+        const b64Data = Buffer.from(binData, 'binary').toString('base64')
+        article.image = b64Data
+        article.imageType = headers['content-type']
 
         // If no site name, use site logo
         const site =
@@ -127,8 +138,6 @@ function requestURL(id) {
             .split('More')?.[0] ||
           $(element).find('div > div > div > div').text().split('More')?.[0]
         article.site = site
-        const img = image.split(' ') // If there are two links, splits them
-        article.image = img[0] // Use the first link
         data.push(article)
         i++
       }
